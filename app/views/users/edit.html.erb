@@ -1,0 +1,30 @@
+<div class="container">
+  
+  <h2>体型情報入力画面</h2>
+
+  <%= form_with model: current_user, url: user_path, local: true do |f| %>
+    <%= render "users/shared/error_messages", resource: current_user %>
+  
+    <div class="field mb-3">
+      <%= f.label :tall %><br />
+      <%= f.number_field :tall, autofocus: true, placeholder: 'cm' %>
+    </div>
+    
+    <div class="field mb-3">
+      <%= f.label :weight %><br />
+      <%= f.number_field :weight, autofocus: true, placeholder: 'kg' %>
+    </div>
+    
+     <div class="field mb-3">
+      <%= f.label :body_fat_percentage %><br />
+      <%= f.number_field :body_fat_percentage, autofocus: true, placeholder: '%' %>
+    </div>
+    
+    <div class="actions">
+      <%= f.submit "Update" %>
+    </div>
+  <% end %>
+  
+  <%= link_to "Back", :back %>
+
+</div>

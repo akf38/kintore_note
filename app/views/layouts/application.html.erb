@@ -17,17 +17,32 @@
              <span class="font-weight-bold">筋トレノート</span>
            </a>
           </ul>
-          <ul class="nav">
-           <li class="nav-item ml-auto">
-             <a class="nav-link btn btn-outline-primary mr-3" href="#">新規登録</a>
-           </li>
-           <li class="nav-item">
-             <a class="nav-link btn btn-outline-primary mr-3" href="#">ログイン</a>
-           </li>
-           <li class="nav-item">
-             <a class="nav-link btn btn-outline-primary mr-3" href="#">お問い合わせ</a>
-           </li> 
-          </ul>
+         
+          <% if user_signed_in? %>  <!--ログインしている場合-->
+            <ul class="nav">
+             <li class="nav-item ml-auto">
+               <%= link_to "マイページ", user_path(current_user), {class: 'nav-link btn btn-outline-primary mr-3'} %>
+             </li>
+             <li class="nav-item">
+               <%= link_to 'ログアウト', destroy_user_session_path, {method: :delete, class: 'nav-link btn btn-outline-primary mr-3'} %>
+             </li>
+             <li class="nav-item">
+               <a class="nav-link btn btn-outline-primary mr-3" href="#">お問い合わせ</a>
+             </li> 
+            </ul>
+          <% else %> <!--ログインしていない場合-->
+            <ul class="nav">
+             <li class="nav-item ml-auto">
+               <%= link_to '新規登録', new_user_registration_path, {class: 'nav-link btn btn-outline-primary mr-3'} %>
+             </li>
+             <li class="nav-item">
+               <%= link_to 'ログイン', new_user_session_path, {class: 'nav-link btn btn-outline-primary mr-3'} %>
+             </li>
+             <li class="nav-item">
+               <a class="nav-link btn btn-outline-primary mr-3" href="#">お問い合わせ</a>
+             </li> 
+            </ul>
+          <% end %>
         </nav>
     </header>
     <%= yield %>
