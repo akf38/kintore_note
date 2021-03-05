@@ -13,13 +13,13 @@
       <% end %>
       <h3>体重</h3>
       <% if @user.weight %>
-      <p class="mb-3"><%= @user.weight %>cm</p>
+      <p class="mb-3"><%= @user.weight %>kg</p>
       <% else %>
       <p class="mb-3">未入力</p>
       <% end %>
       <h3>体脂肪率</h3>
       <% if @user.body_fat_percentage %>
-      <p class="mb-3"><%= @user.body_fat_percentage %>cm</p>
+      <p class="mb-3"><%= @user.body_fat_percentage %>%</p>
       <% else %>
       <p class="mb-3">未入力</p>
       <% end %>
@@ -34,7 +34,11 @@
     </div>
     <div class="col-8">
       <h2>体重推移</h2>
-      <%= link_to '過去の記録一覧はこちら', user_user_infos_path(@user.id) %>
+      <%= link_to '過去の記録一覧はこちら', user_user_infos_path(@user.id), 'data-turbolinks': false %>
+      <%= line_chart @weight_data, width: "600px", height: "300px" %>
+      <h2>体脂肪率推移</h2>
+      <%= link_to '過去の記録一覧はこちら', user_user_infos_path(@user.id), 'data-turbolinks': false %>
+      <%= line_chart @body_fat_percentage_data, width: "600px", height: "300px" %>
     </div>
   </div>
 </div>
