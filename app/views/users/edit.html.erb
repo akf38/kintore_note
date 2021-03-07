@@ -2,8 +2,8 @@
   
   <h2>体型情報入力画面</h2>
 
-  <%= form_with model: current_user, url: user_path, local: true do |f| %>
-    <%= render "users/shared/error_messages", resource: current_user %>
+  <%= form_with model: @user, url: user_path, local: true do |f| %>
+    <%= render "layouts/errors", obj: @user %>
   
     <div class="field mb-3">
       <%= f.label :tall %><br />

@@ -14,6 +14,21 @@
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
   
+  <div class="field mb-3">
+      <%= f.label :tall %><br />
+      <%= f.number_field :tall, autofocus: true, placeholder: 'cm' %>
+    </div>
+    
+  <div class="field mb-3">
+    <%= f.label :weight %><br />
+    <%= f.number_field :weight, autofocus: true, placeholder: 'kg' %>
+  </div>
+  
+   <div class="field mb-3">
+    <%= f.label :body_fat_percentage %><br />
+    <%= f.number_field :body_fat_percentage, autofocus: true, placeholder: '%' %>
+  </div>
+    
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>

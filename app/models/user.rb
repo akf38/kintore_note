@@ -7,4 +7,12 @@ class User < ApplicationRecord
   attachment :image
   
   has_many :user_infos, dependent: :destroy
+  has_many :records,    dependent: :destroy
+  
+  validates :name,  presence: true 
+  validates :email, presence: true, uniqueness: true
+  validates :tall, presence: true
+  validates :weight , presence: true
+  validates :body_fat_percentage, presence: true
+  
 end

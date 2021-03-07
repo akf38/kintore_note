@@ -10,7 +10,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_04_054330) do
+ActiveRecord::Schema.define(version: 2021_03_05_085300) do
+
+  create_table "genres", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "parts", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "records", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.text "comment"
+    t.string "image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "training_records", force: :cascade do |t|
+    t.integer "record_id", null: false
+    t.integer "training_id", null: false
+    t.integer "weight", null: false
+    t.integer "rep", null: false
+    t.integer "set", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "trainings", force: :cascade do |t|
+    t.integer "genre_id", null: false
+    t.integer "part_id", null: false
+    t.string "name", null: false
+    t.string "image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "user_infos", force: :cascade do |t|
     t.integer "user_id", null: false
