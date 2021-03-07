@@ -1,0 +1,35 @@
+<div class="container">
+  <h2><%= "#{@record.created_at.strftime('%Y/%m/%d')}トレーニング内容編集" %></h2>
+  <row>
+    <%= render 'layouts/errors', obj: @training_record %>
+    <%= form_with model: [@record,@training_record], local: true do |f| %>
+      <%= f.collection_select(:training_id, Training.all, :id, :name) %>
+      <%= f.number_field :weight %>kg
+      <%= f.number_field :rep %>回
+      <%= f.number_field :set %>セット
+      <%= f.submit '記録する' %>
+    <% end %>
+  </row>
+  <table class="table">
+    <thead>
+      <th>トレーニング名</th>
+      <th>重量</th></th>
+      <th>レップ数</th>
+      <th>セット数</th>
+    </thead>
+    <tbody>
+      <% @record.training_records.each do |t_record| %>
+      <%= form_with model: [@record, t_record], local: true do |f| %>
+      <tr>
+        <td><%= f.collection_select :training_id, Training.all, :id, :name, {selected: t_record.training_id } %></td>
+        <td><%= f.number_field :weight, value: t_record.weight %>kg</td>
+        <td><%= f.number_field :rep, value: t_record.rep %>回</td>
+        <td><%= f.number_field :set, value: t_record.set %>セット</td>
+        <td><%= f.submit '変更' %></td>
+        <td><%= link_to '削除', record_training_record_path(@record.id, t_record.id), method: :delete %></td>
+      </tr>
+      <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

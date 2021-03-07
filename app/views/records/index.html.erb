@@ -1,0 +1,20 @@
+<div class="container">
+  <h2>トレーニングノート</h2>
+  <%= link_to '今日のトレーニングを記録する', record_path(@record) %>
+  <table class="table">
+    <thead>
+      <th>日付</th>
+      <th>コメント</th></th>
+      <th></th>
+    </thead>
+    <tbody>
+      <% @records.each do |record| %>
+      <tr>
+        <td><%= record.created_at.strftime('%Y年%m月%d日') %></td>
+        <td><%= record.comment %></td>
+        <td><%= link_to '詳細', record_path(record.id), {class: 'btn btn-success'} %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

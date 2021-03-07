@@ -10,9 +10,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+    # ユーザー新規登録成功時に体型情報テーブルにも同時登録
+    if user_signed_in?
+      UserInfo.create(user_id: current_user.id, weight: current_user.weight, body_fat_percentage: current_user.body_fat_percentage)
+    end
+  end
 
   # GET /resource/edit
   # def edit
