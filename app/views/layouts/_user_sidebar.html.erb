@@ -1,0 +1,28 @@
+<h2 class="mb-3">ユーザー情報</h2>
+<%= attachment_image_tag obj, :image, fallback: 'no_image.jpg', size: '150x150', class: 'mb-3' %>
+<h3>ユーザー名</h3>
+<p class="mb-3"><%= obj.name %></p>
+<h3>身長</h3>
+<% if obj.tall %>
+<p class="mb-3"><%= obj.tall %>cm</p>
+<% else %>
+<p class="mb-3">未入力</p>
+<% end %>
+<h3>体重</h3>
+<% if obj.weight %>
+<p class="mb-3"><%= obj.weight %>kg</p>
+<% else %>
+<p class="mb-3">未入力</p>
+<% end %>
+<h3>体脂肪率</h3>
+<% if obj.body_fat_percentage %>
+<p class="mb-3"><%= obj.body_fat_percentage %>%</p>
+<% else %>
+<p class="mb-3">未入力</p>
+<% end %>
+<h3>プロフィール</h3>
+<% if obj.profile %>
+<p class="mb-4"><%= obj.profile %></p>
+<% else %>
+<p class="mb-4">未入力</p>
+<% end %>

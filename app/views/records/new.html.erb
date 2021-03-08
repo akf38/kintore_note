@@ -3,13 +3,13 @@
     <h2><%= "#{@today_date}トレーニング詳細" %></h2>
   </row>
   <row>
-    <%= render 'layouts/errors', obj: @training_record %>
-    <%= form_with model: @training_record, local: true do |f| %>
-      <%= f.collection_select(:training_id, Training.all, :id, :name) %>
-      <%= f.number_field :weight %>kg
-      <%= f.number_field :rep %>回
-      <%= f.number_field :set %>セット
-      <%= f.submit '記録する' %>
+      <%= render 'layouts/errors', obj: @training_record %>
+      <%= form_with model: @training_record, url: training_records_new_record_create_path, local: true do |f| %>
+        <%= f.collection_select(:training_id, Training.all, :id, :name) %>
+        <%= f.number_field :weight %>kg
+        <%= f.number_field :rep %>回
+        <%= f.number_field :set %>セット
+        <%= f.submit '記録する' %>
     <% end %>
   </row>
   <row>

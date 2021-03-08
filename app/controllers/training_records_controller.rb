@@ -10,6 +10,18 @@ class TrainingRecordsController < ApplicationController
     end
   end
   
+  def new_record_create
+    @record = Record.create(user_id: current_user.id)
+    @training_record = TrainingRecord.new(training_record_params)
+    @training_record.record_id = @record.id
+    if @training_record.save
+      redirect_to record_path(@record)
+    else
+      @record.destroy
+      render 'records/new'
+    end
+  end
+  
   def update
     @record = Record.find(params[:record_id])
     @training_record = TrainingRecord.find(params[:id])
