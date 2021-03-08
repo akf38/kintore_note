@@ -2,10 +2,10 @@
   <div class="row">
     <div class="col-4 user-info">
       <%= render 'layouts/user_sidebar', obj: @user %>
-      <%= link_to 'ユーザー会員情報編集', edit_user_registration_path, {class: 'btn btn-success mb-3'} %>
-       <%= link_to '体型記録をつける！', edit_user_path, {class: 'btn btn-primary'} %>
+      <%= render 'follow_button', obj: @user %>
     </div>
     <div class="col-8">
+      <%= link_to '体型記録をつける！', edit_user_path, {class: 'btn btn-primary'} %>
       <h2>体重推移</h2>
       <%= link_to '過去の記録一覧はこちら', user_user_infos_path(@user.id), 'data-turbolinks': false %>
       <%= line_chart @weight_data, width: "600px", height: "300px" %>

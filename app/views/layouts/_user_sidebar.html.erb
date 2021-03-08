@@ -1,5 +1,10 @@
 <h2 class="mb-3">ユーザー情報</h2>
-<%= attachment_image_tag obj, :image, fallback: 'no_image.jpg', size: '150x150', class: 'mb-3' %>
+<%= attachment_image_tag obj, :image, fallback: 'no_image.jpg', size: '150x150', class: 'mb-3' %><br>
+<%= link_to "フォロー中 #{obj.following.count}", following_user_path(obj) %></br>
+<%= link_to "フォロワー #{obj.followed.count}", followers_user_path(obj) %><br>
+<% if obj == current_user %>
+  <%= link_to '会員情報編集はこちら', edit_user_registration_path %>
+<% end %>
 <h3>ユーザー名</h3>
 <p class="mb-3"><%= obj.name %></p>
 <h3>身長</h3>
