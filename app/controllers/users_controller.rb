@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  def index
+    @users = User.all
+  end
+  
   def show
     @user = User.find(params[:id])
     # グラフ描画のためのデータ。user_idに該当するものを、最新30件取得。各データを時間表示をchartkick指定にあわせて、再度配列化。

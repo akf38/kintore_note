@@ -1,0 +1,27 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-4 user-info">
+      <%= render 'layouts/user_sidebar', obj: current_user %>
+      <%= link_to '筋トレ仲間を探す！', users_path %>
+    </div>
+    <div class="col-8">
+      <h2>ユーザー一覧</h2>
+      <table class="table">
+        <thead>
+          <th></th>
+          <th>ユーザー名</th>
+          <th>プロフィール</th>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+          <tr>
+            <td><%= attachment_image_tag user, :image, fallback: 'no_image.jpg', size: '40x40', class: 'mb-3' %></td>
+            <td><%= link_to "#{user.name}", user_path(user) %></td>
+            <td><%= user.profile %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
