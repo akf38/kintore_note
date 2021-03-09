@@ -11,12 +11,13 @@ Rails.application.routes.draw do
     end
     resources :user_infos, only:[:index, :edit, :update, :destroy]
   end
-  resources :records, only: [:index, :show, :edit, :update, :destroy, :create, :new] do
+  resources :records do
     resources :training_records, only: [:create, :update, :destroy]
   end
   post 'training_records/new_record_create' => 'training_records#new_record_create'
   resources :tweets, only: [:index, :show, :edit, :update, :create] do
     resources :favorites, only: [:create, :destroy]
+    resources :tweet_comments, only: [:create, :destroy]
   end
   resources :relationships, only: [:create, :destroy]
 end

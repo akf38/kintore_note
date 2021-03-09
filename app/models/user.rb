@@ -6,10 +6,11 @@ class User < ApplicationRecord
   
   attachment :image
   
-  has_many :user_infos, dependent: :destroy
-  has_many :records,    dependent: :destroy
-  has_many :tweets,     dependent: :destroy
-  has_many :favorites,  dependent: :destroy
+  has_many :user_infos,    dependent: :destroy
+  has_many :records,       dependent: :destroy
+  has_many :tweets,        dependent: :destroy
+  has_many :favorites,     dependent: :destroy
+  has_many :tweetcomments, dependent: :destroy
   
   has_many :active_relationships,  class_name:   "Relationship",
                                    foreign_key:  "follower_id",

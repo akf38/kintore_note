@@ -29,6 +29,7 @@
         <p><%= tweet.content %></p>
         <%= attachment_image_tag tweet, :image, fallback: 'no_image.jpg', size: '100x100', class: 'mb-3' %>
         <div id="favorite-btn-<%= tweet.id %>"><%= render 'shared/favorite_btn', obj: tweet %></div>
+        <div class='tweet-comment'><%= link_to "コメント#{tweet.tweet_comments.count}", tweet_path(tweet.id) %></div>
       </div>
       <% end %>
     </div>
