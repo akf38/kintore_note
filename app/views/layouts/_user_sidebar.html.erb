@@ -6,7 +6,7 @@
     <h5 class="user-data-label">ユーザー名</h5>
     <p class="mb-3 user-data"><%= obj.name %></p>
     <h5 class="user-data-label">筋トレ歴</h5>
-    <p class="mb-3 user-data"><%= obj.profile || '未入力' %>ヶ月</p>
+    <p class="mb-3 user-data"><%= calc_date_diff(obj.start_date) %></p>
   </div>
 </div>
 
