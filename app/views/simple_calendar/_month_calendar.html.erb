@@ -1,0 +1,30 @@
+ <div class="d-flex justify-content-center">
+    <div class="mr-4"><%= link_to '<<', calendar.url_for_previous_view %></div>
+    <div><%= start_date.year %> / <%= start_date.month %></div>
+    <div class="ml-4"><%= link_to ">>", calendar.url_for_next_view %></div>
+  </div>
+<div class="simple-calendar d-flex justify-content-center">
+  <table class="table calendar">
+    <thead>
+      <tr>
+        <th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th style="color: blue">土</th><th style="color: red">日</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% date_range.each_slice(7) do |week| %>
+        <tr>
+          <% week.each do |day| %>
+            <%= content_tag :td, class: calendar.td_classes_for(day) do %>
+              <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(passed_block) %>
+                <% capture_haml(day, sorted_events.fetch(day, []), &passed_block) %>
+              <% else %>
+                <% passed_block.call day, sorted_events.fetch(day, []) %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

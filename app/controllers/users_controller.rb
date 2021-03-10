@@ -9,6 +9,14 @@ class UsersController < ApplicationController
     data = UserInfo.where(user_id: @user.id).order(created_at: :desc).limit(30)
     @weight_data = data.select(:created_at, :weight).map { |d| [d.created_at.strftime('%Y%m%d').to_s, d.weight] }
     @body_fat_percentage_data = data.select(:created_at, :body_fat_percentage).map { |d| [d.created_at.strftime('%Y%m%d').to_s, d.body_fat_percentage] }
+    
+    if @user == current_user
+      # 自分+フォロー中ユーザーの投稿一覧
+      @tweets = Tweet.where("user_id IN (?) OR user_id = ?", current_user.following_ids, current_user.id)
+    else
+      # 自分+フォロー中ユーザーの投稿一覧
+      @tweets = Tweet.where(user_id: @user.id)
+    end
   end
   
   def edit
