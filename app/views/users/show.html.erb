@@ -28,9 +28,9 @@
       </div>
       </div>
       
-      <div class="tweet-container p-3 rounded-lg">
-        <h4 class='text-center'>最近のTweet</h4>
-        <div class="tweet-box border border-primary mb-3 rounded">
+      <div class="tweet-container rounded-lg shadow-lg bg-warning border">
+        <h4 class='text-center bg-danger text-white rounded-top py-1 font-weight-bold'>タイムライン</h4>
+        <div class="tweet-box  mb-2 mt-1 rounded">
           <% @tweets.each do |tweet| %>
           <div class="tweet border-bottom m-3 bg-white rounded">
             <div class='tweet-main  d-flex justify-content-between'>
@@ -39,7 +39,7 @@
                 <p><%= tweet.content %></p>
               </div>
               <div class='tweet-right mr-3 d-flex align-items-center'>
-                <%= attachment_image_tag tweet, :image, fallback: 'no_image.jpg', size: '100x100' %>
+                <%= attachment_image_tag tweet, :image, size: '100x100' %>
               </div>
             </div>
             <div class='tweet-info d-flex'>

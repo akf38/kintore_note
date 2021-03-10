@@ -24,7 +24,7 @@
       
       <h2>ツイート一覧</h2>
       <% @tweets.each do |tweet| %>
-      <div class="tweet border-bottom">
+      <div class="tweet border-bottom ">
         <%= attachment_image_tag tweet.user, :image, fallback: 'no_image.jpg', size: '40x40', class: 'mb-3' %><span><%= "#{tweet.user.name}" %></span>
         <p><%= tweet.content %></p>
         <%= attachment_image_tag tweet, :image, fallback: 'no_image.jpg', size: '100x100', class: 'mb-3' %>
