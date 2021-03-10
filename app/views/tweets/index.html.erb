@@ -5,33 +5,28 @@
       <%= link_to '筋トレ仲間を探す！', users_path %>
     </div>
     <div class="col-8">
-      <div class="new-tweet">
-        <h2>新規投稿</h2>
-        <%= form_with model: @tweet, local: true do |f| %>
-        <div class="field">
-        <%= f.label :image %><br />
-        <%= f.attachment_field :image %>
+      <div class="new-tweet-container rounded-lg shadow bg-warning border mb-3">
+        <h4 class='text-center bg-danger text-white rounded-top py-1 font-weight-bold'>新規投稿</h4>
+        <div class="border-bottom m-3 bg-white rounded p-2">
+          <%= form_with model: @tweet, local: true do |f| %>
+            <div class="field d-flex align-items-center mb-1">
+             <%= attachment_image_tag current_user, :image, fallback: 'no_image.jpg', size: '40x40', class: 'rounded-circle mr-2' %>
+            <%= f.text_area :content, class: 'tweet-text-area', placeholder: '　筋トレ仲間に熱い想いを届けよう！'  %>
+            </div>
+            <div class='field d-flex align-items-center'>
+              <i class="fas fa-tags font-tags mr-1 px-1"></i>
+              <%= f.text_field :tag_list, value: @tweet.tag_list.join(' '), class: 'tag_form' %>
+            </div>
+            <div class="field d-flex align-items-center">
+              <i class="fas fa-image font-image mr-1 px-1 pt-1"></i>
+              <%= f.attachment_field :image %>
+              <%= f.submit "投稿する", class: 'btn btn-success p-1 ml-auto mt-2 mb-0 mr-3' %>
+            </div>
+          <% end %>
         </div>
-        <div class="field">
-        <%= f.label :content %><br />
-        <%= f.text_area :content %>
-        </div>
-        <div class="actions">
-        <%= f.submit "投稿する" %>
-        </div>
-        <% end %>
       </div>
       
-      <h2>ツイート一覧</h2>
-      <% @tweets.each do |tweet| %>
-      <div class="tweet border-bottom ">
-        <%= attachment_image_tag tweet.user, :image, fallback: 'no_image.jpg', size: '40x40', class: 'mb-3' %><span><%= "#{tweet.user.name}" %></span>
-        <p><%= tweet.content %></p>
-        <%= attachment_image_tag tweet, :image, fallback: 'no_image.jpg', size: '100x100', class: 'mb-3' %>
-        <div id="favorite-btn-<%= tweet.id %>"><%= render 'shared/favorite_btn', obj: tweet %></div>
-        <div class='tweet-comment'><%= link_to "コメント#{tweet.tweet_comments.count}", tweet_path(tweet.id) %></div>
-      </div>
-      <% end %>
+      <%= render 'tweets/tweet_index', obj: @tweets %>
     </div>
   </div>
 </div>

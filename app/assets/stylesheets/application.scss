@@ -12,12 +12,16 @@
  *
  *= require simple_calendar
  *= require_tree .
+ *= require jquery.tagit
+ *= require tagit.ui-zendesk 
  *= require_self
  */
  
 @import "bootstrap";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
+@import "jquery.tagit";       
+@import "tagit.ui-zendesk";
 
 /* ブラウザがそれぞれ持っているCSSをリセットするための記述 */
 * {
