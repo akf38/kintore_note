@@ -1,6 +1,6 @@
 <div class="container">
   <h2><%= "#{@record.created_at.strftime('%Y/%m/%d')}トレーニング内容編集" %></h2>
-  <row>
+  <div class="row">
     <%= render 'layouts/errors', obj: @training_record %>
     <%= form_with model: [@record,@training_record], local: true do |f| %>
       <%= f.collection_select(:training_id, Training.all, :id, :name) %>
@@ -9,7 +9,7 @@
       <%= f.number_field :set %>セット
       <%= f.submit '記録する' %>
     <% end %>
-  </row>
+  </div>
   <table class="table">
     <thead>
       <th>トレーニング名</th>

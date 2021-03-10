@@ -1,8 +1,8 @@
 <div class="user-image-profile-box d-flex justify-content-center">
-  <div class="user-image-box mr-2">
+  <div class="user-image-box mr-1">
     <%= attachment_image_tag obj, :image, fallback: 'no_image.jpg', size: '150x150', class: 'user-image' %>
   </div>
-  <div class="user-profile-box ml-2 mt-3">
+  <div class="user-profile-box ml-1 mt-3">
     <h5 class="user-data-label">ユーザー名</h5>
     <p class="mb-3 user-data"><%= obj.name %></p>
     <h5 class="user-data-label">筋トレ歴</h5>
@@ -10,23 +10,43 @@
   </div>
 </div>
 
-<div class="follow-follower-count d-flex justify-content">
-  <div class="follow-count-box mr-1">
+<div class="follow-follower-count d-flex justify-content-center">
+  <div class="follow-count-box mr-2">
       <p>フォロー</p>
       <p class="follow-count"><%= link_to "#{obj.following.count}", following_user_path(obj) %></p>
   </div>
-  <div class="follower-count-box ml-1">
+  <div class="follower-count-box">
       <p>フォロワー</p>
       <p><%= link_to "#{obj.followed.count}", followers_user_path(obj) %></p>
   </div>
 </div>
 
-<h5 class="user-data-label">身長</h5>
-<p class="mb-3 user-data"><%= obj.tall || '未入力'%>cm</p>
-<h5 class="user-data-label">体重</h5>
-<p class="mb-3 user-data"><%= obj.weight || '未入力' %>kg</p>
-<h5 class="user-data-label">体脂肪率</h5>
-<p class="mb-3 user-data"><%= obj.body_fat_percentage || '未入力' %>%</p>
+<div class="user_infos-count d-flex justify-content-center">
+  <div class="user-info mr-4">
+      <p class="user-data-label">身長</p>
+      <p class="user-data"><%= obj.tall || '未入力'%>cm</p>
+  </div>
+  <div class="user-info">
+      <p class="user-data-label">体重</p>
+      <p class="user-data"><%= obj.weight || '未入力'%>kg</p>
+  </div>
+  <div class="user-info ml-4">
+      <p class="user-data-label">体脂肪率</p>
+      <p class="user-data"><%= obj.body_fat_percentage || '未入力'%>%</p>
+  </div>
+</div>
+<div class="calender-box">
+  <%= month_calendar events: obj.records do |date, records| %>
+    <%= date.day %>
+    <% records.each do |record| %>
+      <div>
+        <%= link_to record_path(record.id) do %>
+          <i class="fas fa-dumbbell" style="color: red;"></i>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
 <% if obj == current_user %>
   <%= link_to '会員情報編集はこちら', edit_user_registration_path, {class: 'user-edit-link'} %>
 <% end %>

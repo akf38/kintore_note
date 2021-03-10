@@ -11,7 +11,8 @@ class TrainingRecordsController < ApplicationController
   end
   
   def new_record_create
-    @record = Record.create(user_id: current_user.id)
+    # start_timeに現在時刻を作成時刻を記録する。(simplecalenderの仕様にあわせている)
+    @record = Record.create(user_id: current_user.id, start_time: Time.zone.now)
     @training_record = TrainingRecord.new(training_record_params)
     @training_record.record_id = @record.id
     if @training_record.save

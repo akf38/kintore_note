@@ -12,6 +12,7 @@ User.create!(name: 'aaa',
             weight: 78,
             body_fat_percentage: 15,
             password: 'aaaaaa',
+            start_date: "2016-02-01 15:00:00",
             password_confirmation: 'aaaaaa')
 
 30.times do |number|
@@ -21,7 +22,9 @@ User.create!(name: 'aaa',
                 created_at: "2021-#{rand(1..2)}-#{rand(1..28)} 04:39:22")
 end
 
-Record.create!(user_id: 1)
+Record.create!(user_id: 1,
+               start_time: "2021-2-9 04:39:22",
+               created_at: "2021-2-9 04:39:22")
                 
 Genre.create!(name: 'バーベル')#1
 Genre.create!(name: 'ダンベル')#2
