@@ -1,8 +1,12 @@
 class TweetsController < ApplicationController
   def index
     @tweet = Tweet.new
-    # 自分+フォロー中ユーザーの投稿一覧
-    @tweets = Tweet.where("user_id IN (?) OR user_id = ?", current_user.following_ids, current_user.id)
+    if params[:tag].present?
+      @tweets = Tweet.tagged_with(params[:tag])
+    else
+      # 自分+フォロー中ユーザーの投稿一覧
+      @tweets = Tweet.where("user_id IN (?) OR user_id = ?", current_user.following_ids, current_user.id).order(created_at: :desc)
+    end
   end
   
   def show
@@ -23,7 +27,7 @@ class TweetsController < ApplicationController
   private
   
   def tweet_params
-    params.require(:tweet).permit(:content, :image)
+    params.require(:tweet).permit(:content, :image, :tag_list)
   end
   
 end
