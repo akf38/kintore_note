@@ -40,6 +40,11 @@
                  <% end %>
                </li>
                <li class="nav-item">
+                 <%= link_to users_path, {class: 'nav-link btn btn-danger mr-3 border-dark'} do %>
+                   <i class="far fa-user-friends text-white font-weight-bold"></i>仲間を探す！</i>
+                 <% end %>
+               </li>
+               <li class="nav-item">
                  <%= link_to destroy_user_session_path, {method: :delete, class: 'nav-link btn btn-danger mr-3 border-dark'} do %>
                    <i class="fas fa-sign-out-alt text-white font-weight-bold">ログアウト</i>
                  <% end %>
@@ -62,7 +67,7 @@
       </div>
     </header>
     <%= yield %>
-    <footer class= 'mt-5 py-5 text-center'>
+    <footer class= 'py-5 text-center'>
       <span>@Love Muscle</span>
     </footer>
   </body>

@@ -1,7 +1,10 @@
 class RecordsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :ensure_correct_user, only: [:edit]
+  
   def index
     @records = current_user.records
-    @record = Record.find_by("created_at >= ?", Time.zone.now.beginning_of_day) || Record.new
+    @record = Record.find_by(created_at: Time.zone.now.beginning_of_day, user_id: current_user.id) || Record.new
   end
   
   def show
@@ -10,7 +13,7 @@ class RecordsController < ApplicationController
   end
   
   def new 
-    if @record = Record.find_by("created_at >= ?", Time.zone.now.beginning_of_day)
+    if @record = Record.find_by(created_at: Time.zone.now.beginning_of_day, user_id: current_user.id)
       redirect_to record_path(@record)
     else
       # 本日の日付を取得。
@@ -23,6 +26,16 @@ class RecordsController < ApplicationController
   def edit
     @record = Record.find(params[:id])
     @training_record = TrainingRecord.new
+  end
+  
+  private
+  
+  def ensure_correct_user
+    @record = Record.find(params[:id])
+    @user = @record.user
+    unless @user == current_user
+      redirect_to record_path(@record)
+    end
   end
   
 end
