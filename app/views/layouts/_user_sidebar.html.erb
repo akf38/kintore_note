@@ -6,7 +6,13 @@
     <h5 class="user-data-label">ユーザー名</h5>
     <p class="mb-3 user-data"><%= obj.name %></p>
     <h5 class="user-data-label">筋トレ歴</h5>
-    <p class="mb-3 user-data"><%= calc_date_diff(obj.start_date) %></p>
+    <p class="mb-3 user-data">
+      <%if obj.start_date.present? %>
+        <%= calc_date_diff(obj.start_date) %>
+      <% else %>
+        <%= link_to '登録する', edit_user_registration_path(obj) %>
+      <% end %>
+    </p>
   </div>
 </div>
 

@@ -19,6 +19,11 @@
       <%= f.label :email %><br />
       <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
     </div>
+    
+    <div class='field'>
+      <%= f.label :start_date, '筋トレ開始日:', {class: 'ml-4'} %><br />
+      <%= f.date_field :start_date, class: 'mr-3 mb-3' %>
+    </div>
   
     <div class="field">
       <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
