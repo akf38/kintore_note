@@ -1,5 +1,5 @@
-<div class="tweet-container rounded-lg shadow-lg bg-warning border">
-  <h4 class='text-center bg-danger text-white rounded-top py-1 font-weight-bold'>ツイート一覧 <% if params[:tag] %> <%= "(##{params[:tag]}検索結果)" %> <% end %></h4>
+<div class="main-layout-container rounded-lg shadow-lg bg-warning border">
+  <h4 class='main-layout-title text-center bg-danger text-white rounded-top py-1 font-weight-bold'>ツイート一覧 <% if params[:tag] %> <%= "(##{params[:tag]}検索結果)" %> <% end %></h4>
   <div class="tweet-box  mb-2 mt-1 rounded">
     <% obj.each do |tweet| %>
     <div class="tweet border-bottom m-3 bg-white rounded">
