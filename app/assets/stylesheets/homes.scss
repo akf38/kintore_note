@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .main-visual{
-  background-image: url('mv.jpg');
+  background-image: image-url('mv.jpg');
   background-size: cover;
   background-position: center;
   width: 100%;
@@ -17,7 +17,7 @@
 }
 
 .first-visual{
-  background-image: url('record.jpg');
+  background-image: image-url('record.jpg');
   background-size: cover;
   background-position: center;
   width: 100%;
@@ -36,7 +36,7 @@
 }
 
 .second-visual{
-  background-image: url('glaph.jpg');
+  background-image: image-url('glaph.jpg');
   background-size: cover;
   background-position: center;
   width: 100%;
@@ -50,7 +50,7 @@
 }
 
 .third-visual{
-  background-image: url('kinnniku-ziman1.jpg');
+  background-image: image-url('kinnniku-ziman1.jpg');
   background-size: cover;
   background-position: center;
   width: 100%;
