@@ -10,6 +10,7 @@ class RecordsController < ApplicationController
   def show
     @record = Record.find(params[:id]) || Record.new
     @training_record = TrainingRecord.new
+    @training_records = TrainingRecord.includes([:training]).where(record_id: @record.id)
   end
   
   def new 
