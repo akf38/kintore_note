@@ -1,0 +1,59 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.user-info{
+  text-align: center;
+}
+
+
+// ユーザーサイドばーの調整
+.user-edit-link{
+  font-size: 5px
+}
+
+.follow-count{
+  border-right: solid 1px red;
+}
+
+.user-data-label{
+  font-size: 15px;
+}
+
+.user-data{
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.user-image{
+  border-radius: 50%;
+}
+
+.simple-calendar table{
+  width: 70%;
+}
+
+.simple-calendar .day{
+  height: 40px;
+}
+
+.user_info_link{
+  line-height: 100%;
+}
+
+
+.tweet-box{
+  height: 350px;
+  overflow: scroll;
+}
+
+.user-field{
+  font-weight: bold;
+  color: black;
+}
+
+.user-form-background{
+  background-image: image-url('mv.jpg');
+  background-size: cover;
+  background-position: center;
+}

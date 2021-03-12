@@ -1,15 +1,74 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>KintoreNote</title>
+    <title>筋トレノート</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <header class="bg-warning">
+        <nav class="navbar navbar-expand-sm col-10 offset-1 pb-1">
+
+           <a class="navbar-brand mr-auto" href="/" syle="display: bolck">
+             <%= image_tag 'logo.png' %>
+           </a>
+           
+           <button class='navbar-toggler border-dark' type='button' data-toggle='collapse' data-target='#navbarNavDropdown' aria-controls='navbarNavDropdown' aria-expanded='false' aria-label='Toggle navigation'>
+             <span class='navbar-toggler-icon font-weight-bold'>≡</span>
+           </button>
+           
+           <div id='navbarNavDropdown' class='collapse navbar-collapse'>
+             <% if user_signed_in? %>  <!--ログインしている場合-->
+              <ul class="nav navbar-nav ml-auto">
+               <li class="nav-item">
+                 <%= link_to user_path(current_user), {class: 'nav-link btn btn-danger mr-3 border-dark'} do %>
+                 <i class="far fa-id-card text-white font-weight-bold">マイページ</i>
+                 <% end %>
+               </li>
+               <li class="nav-item">
+                 <%= link_to records_path, {class: 'nav-link btn btn-danger mr-3 border-dark'} do %>
+                   <i class="fas fa-pencil-alt text-white font-weight-bold">記録する！</i>
+                 <% end %>
+               </li>
+               <li class="nav-item">
+                 <%= link_to tweets_path, {class: 'nav-link btn btn-danger mr-3 border-dark', data: {"turbolinks" => false}} do %>
+                   <i class="far fa-comment-alt text-white font-weight-bold">つぶやく！</i>
+                 <% end %>
+               </li>
+               <li class="nav-item">
+                 <%= link_to users_path, {class: 'nav-link btn btn-danger mr-3 border-dark'} do %>
+                   <i class="far fa-user-friends text-white font-weight-bold"></i>仲間を探す！</i>
+                 <% end %>
+               </li>
+               <li class="nav-item">
+                 <%= link_to destroy_user_session_path, {method: :delete, class: 'nav-link btn btn-danger mr-3 border-dark'} do %>
+                   <i class="fas fa-sign-out-alt text-white font-weight-bold">ログアウト</i>
+                 <% end %>
+               </li>
+              </ul>
+            <% else %> <!--ログインしていない場合-->
+              <ul class="nav navbar-nav ml-auto">
+               <li class="nav-item">
+                 <%= link_to '新規登録', new_user_registration_path, {class: 'nav-link btn btn-danger mr-3 border-dark'} %>
+               </li>
+               <li class="nav-item">
+                 <%= link_to 'ログイン', new_user_session_path, {class: 'nav-link btn btn-danger mr-3 border-dark'} %>
+               </li>
+              </ul>
+            <% end %>
+           </div>
+           
+        </nav>
+    
+      </div>
+    </header>
     <%= yield %>
+    <footer class= 'py-5 text-center'>
+      <span>@Love Muscle</span>
+    </footer>
   </body>
 </html>

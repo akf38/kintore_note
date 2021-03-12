@@ -1,0 +1,32 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-4 user-info">
+      <%= render 'layouts/user_sidebar', obj: current_user %>
+      <%= link_to '筋トレ仲間を探す！', users_path %>
+    </div>
+    <div class="col-8">
+      <div class="new-tweet-container rounded-lg shadow bg-warning border mb-3">
+        <h4 class='text-center bg-danger text-white rounded-top py-1 font-weight-bold'>新規投稿</h4>
+        <div class="border-bottom m-3 bg-white rounded p-2">
+          <%= form_with model: @tweet, local: true do |f| %>
+            <div class="field d-flex align-items-center mb-1">
+             <%= attachment_image_tag current_user, :image, fallback: 'no_image.jpg', size: '40x40', class: 'rounded-circle mr-2' %>
+            <%= f.text_area :content, class: 'tweet-text-area', placeholder: '　筋トレ仲間に熱い想いを届けよう！'  %>
+            </div>
+            <div class='field d-flex align-items-center'>
+              <i class="fas fa-tags font-tags mr-1 px-1"></i>
+              <%= f.text_field :tag_list, value: @tweet.tag_list.join(' '), class: 'tag_form' %>
+            </div>
+            <div class="field d-flex align-items-center">
+              <i class="fas fa-image font-image mr-1 px-1 pt-1"></i>
+              <%= f.attachment_field :image %>
+              <%= f.submit "投稿する", class: 'btn btn-success p-1 ml-auto mt-2 mb-0 mr-3' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      
+      <%= render 'tweets/tweet_index', obj: @tweets %>
+    </div>
+  </div>
+</div>

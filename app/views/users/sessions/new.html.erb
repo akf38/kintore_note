@@ -1,0 +1,32 @@
+<div class='user-form-background'>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 my-4 offset-sm-3">
+        <div class="main-layout-container rounded-lg shadow-lg bg-warning">
+          <h4 class='main-layout-title text-center bg-danger text-white rounded-top py-1 font-weight-bold'>ログイン</h4>
+          <div class="main-layout-box  mb-2 mt-1 rounded">
+            <%= form_with model: @user, url: user_session_path, local: true do |f| %>
+              <%= render "users/shared/error_messages", resource: resource %>
+              
+              <table class="d-flex justify-content-center mt-4">
+                <tbody>
+                  <tr class='user-field'><td><%= f.label :email, 'メールアドレス:', {class: 'ml-4 mb-3'} %></td><td><%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'mr-3 mb-3' %></td></tr>
+                  <tr class='user-field'><td><%= f.label :password, 'パスワード:', {class: 'ml-4'} %></td><td><%= f.password_field :password, autocomplete: "new-password", class: 'mr-3 mb-3' %></td></tr>
+                </tbody>
+              </table>
+            
+              <div class="actions text-center mt-4">
+                <%= f.submit "ログインする", {class: 'btn btn-success mb-3'}%><br>
+                <%= render "users/shared/links" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
