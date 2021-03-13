@@ -15,7 +15,6 @@ class UsersController < ApplicationController
     if @user == current_user
       # 自分+フォロー中ユーザーの投稿一覧
       @tweets = Tweet.includes([:user]).where("user_id IN (?) OR user_id = ?", current_user.following_ids, current_user.id).order(created_at: :desc).limit(30)
-      flash[:success] = 'ここはあなたのページです。'
     else
       # 自分+フォロー中ユーザーの投稿一覧
       @tweets = Tweet.includes([:user]).where(user_id: @user.id).order(created_at: :desc).limit(30)
@@ -40,14 +39,14 @@ class UsersController < ApplicationController
     end
   end
   
-  def following
+  def following #フォロー中ユーザー一覧表示ページへの対応メソッド
     @user = User.find(params[:id])
     @title = "#{@user.name}さんのフォロー中リスト"
     @users = @user.following
     render 'follow_follower_list'
   end
   
-  def followers
+  def followers #フォロワーユーザー一覧表示ページへの対応メソッド
     @user = User.find(params[:id])
     @title = "#{@user.name}さんのフォロワーリスト"
     @users = @user.followed

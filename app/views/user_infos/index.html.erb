@@ -1,24 +1,36 @@
 <div class="container">
-  <h2>過去の体型記録一覧</h2>
-  <table class="table">
-    <thead>
-      <th>日付</th>
-      <th>体重</th>
-      <th>体脂肪率</th>
-    </thead>
-    <tbody>
-      <% @user_infos.each do |info| %>
-      <!--formwithにinfoを直接渡すと、modelとして認識しない。-->
-      <%= form_with model: [@user, UserInfo.find("#{info.id}")], local: true do |f| %> 
-      <tr>
-        <td><%= info.created_at.strftime('%Y年%m月%d日') %></td>
-        <td><%= f.number_field :weight, value: "#{info.weight}" %>kg</td>
-        <td><%= f.number_field :body_fat_percentage, value: "#{info.body_fat_percentage}" %>%</td>
-        <td><%= f.submit '編集する' %></td>
-        <td><%= link_to '削除する', user_user_info_path(@user.id, info.id), method: :delete %></td>
-      </tr>
-      <% end %>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+  <div class='row'>
+    <div class='col-sm-10 offset-sm-1'>
+      <h2 class='text-center my-4'>過去の体型記録一覧</h2>
+      <div class='d-flex justify-content-end'>
+         <%= link_to '今日の体型記録をつける>>', edit_user_path(@user) %>
+      </div>
+     
+      <table class="table">
+        <thead>
+          <th>日付</th>
+          <th>体重</th>
+          <th>体脂肪率</th>
+          <th></th>
+          <th></th>
+        </thead>
+        <tbody>
+          <% @user_infos.each do |info| %>
+          <!--formwithにinfoを直接渡すと、modelとして認識しない。-->
+          <%= form_with model: [@user, UserInfo.find(info.id)], local: true do |f| %> 
+          <tr>
+            <td><%= info.created_at.strftime('%Y年%m月%d日') %></td>
+            <td><%= f.number_field :weight, value: "#{info.weight}" %>kg</td>
+            <td><%= f.number_field :body_fat_percentage, value: "#{info.body_fat_percentage}" %>%</td>
+            <td><%= f.submit '変更を保存する', {class: 'btn btn-success'} %></td>
+            <td><%= link_to '削除する', user_user_info_path(@user.id, info.id), method: :delete, class: 'btn btn-danger' %></td>
+          </tr>
+          <% end %>
+          <% end %>
+        </tbody>
+      </table>
+      <div class='kaminari d-flex justify-content-center'>
+        <%= paginate @user_infos %>
+      </div>
+    </div>
+  </div>
