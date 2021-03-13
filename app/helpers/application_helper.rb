@@ -1,4 +1,5 @@
 module ApplicationHelper
+  
   # 開始日(start_date)から現在までの経過期間を計算する
   def calc_date_diff(start_date)
     
@@ -46,4 +47,17 @@ module ApplicationHelper
     
     return "#{diff_year}年#{diff_month}ヶ月#{diff_day}日"
   end
+  
+  # deviseのflashをbootstrapに対応させる。
+  def devise_flashkey_to_bootstrap(key)
+    case key
+    when "alert"
+      "warning"
+    when "notice"
+      "success"
+    when "error"
+      "danger"
+    end
+  end
+  
 end

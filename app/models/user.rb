@@ -45,8 +45,9 @@ class User < ApplicationRecord
   end
   
   # omniauthのコールバック時に呼ばれるメソッド
+  #既存ユーザーであればそのユーザーへ、新規ユーザーであれば新規作成したユーザーへ、emailとパスワードの値を追加で持たせる。（この時点で保存はできてない。callbackメソッド内で使用)
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+    User.where(provider: auth.provider, uid: auth.uid).first_or_create do |user| 
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
     end
