@@ -3,17 +3,23 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .main-visual{
-  background-image: image-url('mv.jpg');
+  background-image: image-url('mv1.jpg');
   background-size: cover;
   background-position: center;
   width: 100%;
   height: 400px;
   p{
-    font-size: 45px;
+    font-size: 50px;
     font-weight: bold;
     color: white;
-    text-shadow: 1px 2px 3px #ffffff;
+    text-shadow: 1px 2px 5px #ffffff;
   }
+}
+
+.main{
+  width: 100%;
+  height: 400px;
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .first-visual{

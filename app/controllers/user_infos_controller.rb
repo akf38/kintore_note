@@ -4,7 +4,7 @@ class UserInfosController < ApplicationController
   
   def index
     @user = User.find(params[:user_id])
-    @user_infos = @user.user_infos.order(created_at: :desc)
+    @user_infos = @user.user_infos.order(created_at: :desc).page(params[:page]).per(10)
   end
   
   def update

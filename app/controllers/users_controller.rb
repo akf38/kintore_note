@@ -14,10 +14,10 @@ class UsersController < ApplicationController
     
     if @user == current_user
       # 自分+フォロー中ユーザーの投稿一覧
-      @tweets = Tweet.where("user_id IN (?) OR user_id = ?", current_user.following_ids, current_user.id).order(created_at: :desc).limit(30)
+      @tweets = Tweet.includes([:user]).where("user_id IN (?) OR user_id = ?", current_user.following_ids, current_user.id).order(created_at: :desc).limit(30)
     else
       # 自分+フォロー中ユーザーの投稿一覧
-      @tweets = Tweet.where(user_id: @user.id).order(created_at: :desc).limit(30)
+      @tweets = Tweet.includes([:user]).where(user_id: @user.id).order(created_at: :desc).limit(30)
     end
   end
   
@@ -39,14 +39,23 @@ class UsersController < ApplicationController
     end
   end
   
-  def following
+  # 論理削除メソッド
+  def soft_delete
+    @user = User.find(params[:id])
+    @user.update(is_deleted: true)
+    reset_session
+    flash[:notice] = 'この度は、筋トレノートをご利用いただきありがとうございました。またのご登録を心よりお待ちしております。'
+    redirect_to root_path
+  end
+  
+  def following #フォロー中ユーザー一覧表示ページへの対応メソッド
     @user = User.find(params[:id])
     @title = "#{@user.name}さんのフォロー中リスト"
     @users = @user.following
     render 'follow_follower_list'
   end
   
-  def followers
+  def followers #フォロワーユーザー一覧表示ページへの対応メソッド
     @user = User.find(params[:id])
     @title = "#{@user.name}さんのフォロワーリスト"
     @users = @user.followed

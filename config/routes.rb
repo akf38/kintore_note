@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => {
     :registrations => 'users/registrations',
-    :sessions => 'users/sessions'   
+    :sessions => 'users/sessions',
+    :omniauth_callbacks => 'users/omniauth_callbacks'
   } 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'homes#top'
+  get '/privacy' => 'homes#privacy'
+  get '/term'    => 'homes#term'
   resources :users, only: [:index, :show, :edit, :update] do
     member do
       get :following, :followers
+      post :soft_delete
     end
     resources :user_infos, only:[:index, :edit, :update, :destroy]
   end
