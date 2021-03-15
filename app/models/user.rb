@@ -44,6 +44,20 @@ class User < ApplicationRecord
     following.include?(other_user)
   end
   
+  # パスワードなしで更新を許可する
+  def update_without_current_password(params, *options)
+    params.delete(:current_password)
+
+    if params[:password].blank? && params[:password_confirmation].blank?
+      params.delete(:password)
+      params.delete(:password_confirmation)
+    end
+
+    result = update_attributes(params, *options)
+    clean_up_passwords
+    result
+  end
+  
   # omniauthのコールバック時に呼ばれるメソッド
   #既存ユーザーであればそのユーザーへ、新規ユーザーであれば新規作成したユーザーへ、emailとパスワードの値を追加で持たせる。（この時点で保存はできてない。callbackメソッド内で使用)
   def self.from_omniauth(auth)

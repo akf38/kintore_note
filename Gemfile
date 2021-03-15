@@ -79,7 +79,8 @@ gem 'omniauth-twitter'
 gem 'omniauth-google-oauth2'
 gem "omniauth", "~> 1.9.1"
 gem 'bullet'
-
+gem 'devise-i18n'
+gem 'devise-i18n-views'
 
 group :production do
   gem 'mysql2'
