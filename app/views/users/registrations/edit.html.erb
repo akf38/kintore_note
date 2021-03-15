@@ -1,56 +1,41 @@
-<div class="container">
-  
-  <h2>ユーザー会員情報編集</h2>
-
-  <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
-    <%= render "users/shared/error_messages", resource: resource %>
-    
-    <div class='field'>
-      <%= f.label :name %><br />
-      <%= f.text_field :name %>
+<div class='user-form-background'>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 my-4 offset-sm-3">
+        <div class="main-layout-container rounded-lg shadow-lg bg-warning">
+          <h4 class='main-layout-title text-center bg-danger text-white rounded-top py-1 font-weight-bold'>ユーザー情報編集</h4>
+          <div class="main-layout-box  mb-2 mt-1 rounded">
+            <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
+              <%= render "users/shared/error_messages", resource: resource %>
+              
+              <table class="d-flex justify-content-center mt-4">
+                <tbody>
+                  <tr class='user-field'><td><%= f.label :name, 'ユーザー名:', {class: 'ml-4 mb-3'} %></td><td><%= f.text_field :name, autofocus: true, class: 'mr-3 mb-3' %></td></tr>
+                  <tr class='user-field'><td><%= f.label :email, 'メールアドレス:', {class: 'ml-4 mb-3'} %></td><td><%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'mr-3 mb-3' %></td></tr>
+                  <tr class='user-field'><td><%= f.label :profile, 'プロフィール:', {class: 'ml-4'} %></td><td><%= f.text_area :profile, autofocus: true, class: 'mr-3 mb-3' %></td></tr>
+                  <tr class='user-field'><td><%= f.label :image, 'プロフィール画像:　', {class: 'ml-4'} %></td><td><%= f.attachment_field :image, class: 'mr-3 mb-3' %></td></tr>
+                  <tr class='user-field'><td><%= f.label :start_date, '筋トレ開始日:', {class: 'ml-4'} %></td><td><%= f.date_field :start_date, class: 'mr-3 mb-3' %></td></tr>
+                </tbody>
+              </table>
+            
+              <div class="actions text-center mt-4">
+                <%= f.submit "変更内容を保存する", {class: 'btn btn-success mb-3'}%><br>
+              </div>
+            <% end %>
+          </div>
+          <%= link_to '退会', soft_delete_user_path(@user), method: :post, 'data-confirm' => '本当に退会しますか？', class: 'btn btn-danger' %>  
+        </div>
+      </div>
     </div>
-  
-    <div class="field">
-      <%= f.label :image %><br />
-      <%= f.attachment_field :image %>
-    </div>
-    
-    <div class="field">
-      <%= f.label :profile %><br />
-      <%= f.text_area :profile %>
-    </div>
-    
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-    </div>
-    
-    <div class='field'>
-      <%= f.label :start_date, '筋トレ開始日:', {class: 'ml-4'} %><br />
-      <%= f.date_field :start_date, class: 'mr-3 mb-3' %>
-    </div>
-  
-    <div class="field">
-      <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-      <%= f.password_field :password, autocomplete: "new-password" %>
-      <% if @minimum_password_length %>
-        <br />
-        <em><%= @minimum_password_length %> characters minimum</em>
-      <% end %>
-    </div>
-  
-    <div class="field">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-    </div>
-  
-    <div class="actions">
-      <%= f.submit "変更する" %>
-    </div>
-  <% end %>
-
-  <%= link_to "Back", :back %>
-  
-  <%= link_to '退会', soft_delete_user_path(@user), method: :post, 'data-confirm' => '本当に退会しますか？', class: 'btn btn-danger' %>  
-
+  </div>
 </div>
+
+
+
+
+
+
+
+
+
+
