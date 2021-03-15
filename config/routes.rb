@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show, :edit, :update] do
     member do
       get :following, :followers
+      post :soft_delete
     end
     resources :user_infos, only:[:index, :edit, :update, :destroy]
   end

@@ -23,7 +23,7 @@
            
            <div id='navbarNavDropdown' class='collapse navbar-collapse'>
              <% if user_signed_in? %>  <!--ログインしている場合-->
-              <ul class="nav navbar-nav ml-auto">
+              <ul class="nav navbar-nav ml-auto d-flex align-items-center">
                <li class="nav-item">
                  <%= link_to user_path(current_user), {class: 'nav-link btn btn-danger mr-3 border-dark'} do %>
                  <i class="far fa-id-card text-white font-weight-bold">マイページ</i>
@@ -44,10 +44,26 @@
                    <i class="far fa-user-friends text-white font-weight-bold">仲間を探す！</i>
                  <% end %>
                </li>
-               <li class="nav-item">
-                 <%= link_to destroy_user_session_path, {method: :delete, class: 'nav-link btn btn-danger mr-3 border-dark'} do %>
-                   <i class="fas fa-sign-out-alt text-white font-weight-bold">ログアウト</i>
-                 <% end %>
+               <li>
+                 <div class="dropdown">
+                   <button class="btn btn-warning p-0 dropdown-toggle user-dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                    <%= attachment_image_tag current_user, :image, fallback: 'no_image.jpg', size: '50x50', class: 'user-image' %>
+                   </button>
+                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <%= link_to edit_user_registration_path do %>
+                        <i class="fas fa-user-cog font-weight-bold dropdown-item p-3"> ユーザー情報編集</i>
+                      <% end %>
+                      <%= link_to privacy_path do %>
+                        <i class="fas fa-info-circle font-weight-bold dropdown-item p-3"> プライバシーポリシー</i>
+                      <% end %>
+                      <%= link_to term_path do %>
+                        <i class="fas fa-file-alt font-weight-bold dropdown-item p-3 pb-4"> 利用規約</i>
+                      <% end %>
+                      <%= link_to destroy_user_session_path, method: :delete do %>
+                        <i class="fas fa-sign-out-alt font-weight-bold dropdown-item p-3 pt-4 border-top"> ログアウト</i>
+                      <% end %>
+                   </div>
+                 </div>
                </li>
               </ul>
             <% else %> <!--ログインしていない場合-->
@@ -63,6 +79,9 @@
            </div>
            
         </nav>
+        <% if user_signed_in? %>
+          
+        <% end %>
     
       </div>
     </header>

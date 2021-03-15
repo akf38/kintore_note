@@ -39,6 +39,15 @@ class UsersController < ApplicationController
     end
   end
   
+  # 論理削除メソッド
+  def soft_delete
+    @user = User.find(params[:id])
+    @user.update(is_deleted: true)
+    reset_session
+    flash[:notice] = 'この度は、筋トレノートをご利用いただきありがとうございました。またのご登録を心よりお待ちしております。'
+    redirect_to root_path
+  end
+  
   def following #フォロー中ユーザー一覧表示ページへの対応メソッド
     @user = User.find(params[:id])
     @title = "#{@user.name}さんのフォロー中リスト"
