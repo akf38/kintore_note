@@ -108,6 +108,9 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.8)
     crass (1.0.6)
+    devise-i18n (1.9.3)
+      devise (>= 4.7.1)
+    devise-i18n-views (0.3.7)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.7.6)
@@ -375,6 +378,8 @@ DEPENDENCIES
   chromedriver-helper
   coffee-rails (~> 4.2)
   devise!
+  devise-i18n
+  devise-i18n-views
   dotenv-rails
   font-awesome-sass (~> 5.13)
   groupdate
