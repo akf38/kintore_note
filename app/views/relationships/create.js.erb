@@ -1,0 +1,2 @@
+$('.follow-follower-count-container').html("<%= j( render 'users/follow-follower-count-box', resource: @count_user) %>");
+$("#<%= @user.id %>-follow-button").html("<%= j( render 'users/follow_button', obj: @user) %>");
