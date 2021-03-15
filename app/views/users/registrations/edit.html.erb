@@ -50,5 +50,7 @@
   <% end %>
 
   <%= link_to "Back", :back %>
+  
+  <%= link_to '退会', soft_delete_user_path(@user), method: :post, 'data-confirm' => '本当に退会しますか？', class: 'btn btn-danger' %>  
 
 </div>
