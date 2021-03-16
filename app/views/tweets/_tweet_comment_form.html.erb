@@ -1,0 +1,15 @@
+<h2>コメント投稿</h2>
+<%= render 'layouts/errors', obj: obj2 %>
+<%= form_with model:[obj1, obj2], remote: true do |f| %>
+<div class="field">
+  <%= f.label :image %><br />
+  <%= f.attachment_field :image, id: 'tweet_comment_image_form' %>
+</div>
+<div class="field">
+  <%= f.label :content %><br />
+  <%= f.text_area :content, id: 'tweet_comment_content_form' %>
+</div>
+<div class="actions">
+  <%= f.submit "投稿する" %>
+</div>
+<% end %>

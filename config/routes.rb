@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     resources :training_records, only: [:create, :update, :destroy]
   end
   post 'training_records/new_record_create' => 'training_records#new_record_create'
-  resources :tweets, only: [:index, :show, :edit, :update, :create] do
+  resources :tweets, only: [:index, :show, :edit, :update, :create, :destroy] do
     resources :favorites, only: [:create, :destroy]
     resources :tweet_comments, only: [:create, :destroy]
   end
