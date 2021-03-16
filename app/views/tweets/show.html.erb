@@ -11,7 +11,7 @@
         <% end %>
         <p><%= @tweet.content %></p>
         <%= attachment_image_tag @tweet, :image, size: '100x100', class: 'mb-3' %>
-        <div id="favorite-btn-<%= @tweet.id %>"><%= render 'shared/favorite_btn', obj: @tweet %></div>
+        <div id="favorite-btn-<%= @tweet.id %>"><%= render 'favorites/favorite_btn', obj: @tweet %></div>
         <div class='tweet-comment'><%= "コメント#{@tweet.tweet_comments.count}件" %></div>
       </div>
       <div class="tweet-comments-box">
