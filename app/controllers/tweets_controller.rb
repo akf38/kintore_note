@@ -1,5 +1,6 @@
 class TweetsController < ApplicationController
   before_action :authenticate_user!
+  before_action :ensure_correct_user, only: [:destroy]
   
   def index
     @tweet = Tweet.new
@@ -21,9 +22,21 @@ class TweetsController < ApplicationController
     @tweet = Tweet.new(tweet_params)
     @tweet.user_id = current_user.id
     if @tweet.save
+      @tweets = Tweet.includes([:user]).where("user_id IN (?) OR user_id = ?", current_user.following_ids, current_user.id).order(created_at: :desc)
       redirect_to tweets_path
     else
-      render 'index'
+      @tweets = Tweet.includes([:user]).where("user_id IN (?) OR user_id = ?", current_user.following_ids, current_user.id).order(created_at: :desc)
+      render 'tweets/index'
+    end
+  end
+  
+  def destroy
+    @tweet = Tweet.find(params[:id])
+    @tweet.destroy
+    @tweets = Tweet.includes([:user]).where("user_id IN (?) OR user_id = ?", current_user.following_ids, current_user.id).order(created_at: :desc)
+    respond_to do |format|
+      format.html {redirect_back(fallback_location: root_path)}
+      format.js
     end
   end
   
@@ -31,6 +44,14 @@ class TweetsController < ApplicationController
   
   def tweet_params
     params.require(:tweet).permit(:content, :image, :tag_list)
+  end
+  
+  def ensure_correct_user
+    @tweet = Tweet.find(params[:id])
+    @user = @tweet.user
+    unless @user == current_user
+      redirect_back(fallback_location: root_path)
+    end
   end
   
 end
