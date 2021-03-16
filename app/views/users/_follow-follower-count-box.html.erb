@@ -1,0 +1,8 @@
+<div class="follow-count-box mr-2">
+    <p>フォロー</p>
+    <p class="follow-count"><%= link_to "#{resource.following.count}", following_user_path(resource) %></p>
+</div>
+<div class="follower-count-box">
+    <p>フォロワー</p>
+    <p><%= link_to "#{resource.followed.count}", followers_user_path(resource) %></p>
+</div>

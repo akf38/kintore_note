@@ -14,3 +14,14 @@
  width: 40px;
  height: 30px;
 }
+
+// いいねボタン
+.favorite:link, .favorite:visited, .favorite:hover, .favorite:active {
+  text-decoration: none;
+}
+
+// いいね済みのボタン
+.favorited:link, .favorited:visited, .favorited:hover, .favorited:active {
+  color: #FF0099;
+  text-decoration: none;
+}

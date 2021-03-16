@@ -4,6 +4,8 @@ class Tweet < ApplicationRecord
   has_many :favorites,      dependent: :destroy
   has_many :tweet_comments, dependent: :destroy
   
+  validates :content,  presence: true 
+  
   attachment :image
   
   acts_as_taggable_on :tags

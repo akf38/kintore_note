@@ -16,15 +16,8 @@
   </div>
 </div>
 
-<div class="follow-follower-count d-flex justify-content-center">
-  <div class="follow-count-box mr-2">
-      <p>フォロー</p>
-      <p class="follow-count"><%= link_to "#{obj.following.count}", following_user_path(obj) %></p>
-  </div>
-  <div class="follower-count-box">
-      <p>フォロワー</p>
-      <p><%= link_to "#{obj.followed.count}", followers_user_path(obj) %></p>
-  </div>
+<div class="follow-follower-count-container d-flex justify-content-center">
+  <%= render 'users/follow-follower-count-box', resource: obj %>
 </div>
 
 <div class="user_infos-count d-flex justify-content-center">
