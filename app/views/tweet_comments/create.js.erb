@@ -1,0 +1,6 @@
+$('.tweet-comments-box').html("<%= j( render partial: 'tweet_comments/tweet_comments_list', locals: {obj1: @tweet_comments, obj2: @tweet} ) %>");
+$('.tweet-comment-form-box').html("<%= j( render partial: 'tweets/tweet_comment_form', locals: {obj1: @tweet, obj2: @tweet_comment} ) %>");
+$("#tweet_comment_image-form").val("")
+$("#tweet_comment_content_form").val("")
+
+

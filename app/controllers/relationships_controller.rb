@@ -4,8 +4,10 @@ class RelationshipsController < ApplicationController
   def create
     @user = User.find(params[:followed_id])
     current_user.follow(@user)
-    # ajax非同期通信用の分岐。遷移元がユーザー一覧ページであれば、followカウントに渡す値をcurrent_userに指定する。(create.js.erb参照)
-    if request.referer&.include?("/users/") 
+    # ajax非同期通信用の分岐。遷移元が他人の詳細ページであれば、followカウントに渡す値を@userに指定する。(create.js.erb参照)
+    if request.referer&.include?("/follow")
+      @count_user = current_user
+    elsif request.referer&.include?("/users/") 
       @count_user = @user
     else
       @count_user = current_user
@@ -19,8 +21,10 @@ class RelationshipsController < ApplicationController
   def destroy
     @user = Relationship.find(params[:id]).followed
     current_user.unfollow(@user)
-    # ajax非同期通信用の分岐。遷移元がユーザー一覧ページであれば、followカウントに渡す値をcurrent_userに指定する。(destroy.js.erb参照)
-    if request.referer&.include?("/users/") 
+    # ajax非同期通信用の分岐。遷移元が他人の詳細ページであれば、followカウントに渡す値を@userに指定する。(destroy.js.erb参照)
+    if request.referer&.include?("/follow")
+      @count_user = current_user
+    elsif request.referer&.include?("/users/") 
       @count_user = @user
     else
       @count_user = current_user
