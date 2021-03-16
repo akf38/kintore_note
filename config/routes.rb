@@ -24,5 +24,8 @@ Rails.application.routes.draw do
     resources :tweet_comments, only: [:create, :destroy]
   end
   resources :relationships, only: [:create, :destroy]
+  resources :parts, only: [] do
+    resources :trainings, only: [:index]
+  end
 end
 
