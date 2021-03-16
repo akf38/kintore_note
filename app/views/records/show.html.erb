@@ -1,17 +1,27 @@
 <div class="container">
   <h2><%= "#{@record.created_at.strftime('%Y/%m/%d')}トレーニング詳細" %></h2>
   <% if @record.user == current_user %>
-    <%= link_to 'トレーニング内容の編集はこちら', edit_record_path(@record) %>
+    <%= link_to 'トレーニング内容の編集はこちら', edit_record_path(@record), data: {"turbolinks" => false} %>
   <% end %>
   <row>
     <% if @record.user == current_user %>
       <%= render 'layouts/errors', obj: @training_record %>
+      
       <%= form_with model: [@record,@training_record], local: true do |f| %>
-        <%= f.collection_select(:training_id, Training.all, :id, :name) %>
-        <%= f.number_field :weight %>kg
+      
+        <% category_options = Part.order(:id).map{|c| [c.name, c.id, data: { children_path: part_trainings_path(c)}] } %>
+        <%= f.select :part_id, category_options, {include_blank: 'ーー部位を選択ーー' }, class: 'select-parent my-3' %>
+        
+        <% sub_categories = Part.try(:trainings) || [] %>
+        <% sub_category_options = sub_categories.map{ |c| [c.name, c.id] } %>
+        <%= f.select :training_id, sub_category_options, { include_blank: 'ーー部位別トレーニング一覧ーー' }, class: 'select-children my-3' %><br />
+        
+        <%= f.number_field :weight, class: 'mb-4' %>kg
         <%= f.number_field :rep %>回
         <%= f.number_field :set %>セット
-        <%= f.submit '記録する' %>
+        
+        <%= f.submit '記録する', class: ' btn btn-primary' %>
+        
       <% end %>
     <% end %>
   </row>

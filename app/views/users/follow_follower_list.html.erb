@@ -10,11 +10,12 @@
           <th></th>
           <th>ユーザー名</th>
           <th>プロフィール</th>
+          <th></th>
         </thead>
         <tbody>
           <% @users.each do |user| %>
           <tr>
-            <td><%= attachment_image_tag user, :image, fallback: 'no_image.jpg', size: '40x40', class: 'mb-3' %></td>
+            <td><%= attachment_image_tag user, :image, fallback: 'no_image.jpg', size: '40x40', class: 'mb-3 rounded-circle' %></td>
             <td><%= link_to "#{user.name}", user_path(user) %></td>
             <td><%= user.profile %></td>
             <td id="<%= user.id %>-follow-button"><%= render 'follow_button', obj: user %></td>
