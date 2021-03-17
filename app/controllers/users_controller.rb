@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params) #ユーザー体型情報の更新が成功すれば、ユーザー体型記録テーブルへの保存も同時に行う。
-      if @user_today_info = UserInfo.find_by("created_at >= ?", Time.zone.now.beginning_of_day) #もし、既に今日の体型情報が登録されていれば、その情報を更新する。
+      if @user_today_info = UserInfo.find_by(created_at: Time.zone.now.all_day) #もし、既に今日の体型情報が登録されていれば、その情報を更新する。
         @user_today_info.update(weight: @user.weight, body_fat_percentage: @user.body_fat_percentage)
       else #本日1回目の投稿であれば、今日の体型情報を作成。
         UserInfo.create(user_id: @user.id, weight: @user.weight, body_fat_percentage: @user.body_fat_percentage)

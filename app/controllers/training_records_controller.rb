@@ -9,7 +9,8 @@ class TrainingRecordsController < ApplicationController
     if @training_record.save
       redirect_to record_path(@record)
     else
-      render 'records/new'
+      @training_records = TrainingRecord.includes([:training]).where(record_id: @record.id)
+      render 'records/show'
     end
   end
   

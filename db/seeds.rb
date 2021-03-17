@@ -34,20 +34,53 @@ Genre.create!(name: '自重')#4
 Part.create!(name: '胸')#1
 Part.create!(name: '背中')#2
 Part.create!(name: '肩')#3
-Part.create!(name: '上腕三頭筋')#4
-Part.create!(name: '上腕二頭筋')#5
-Part.create!(name: '腹筋')#6
-Part.create!(name: '足')#7
+Part.create!(name: '腕')#4
+Part.create!(name: '腹')#5
+Part.create!(name: '脚')#6
 
 Training.create!(name: 'ベンチプレス', genre_id: 1, part_id: 1)
-Training.create!(name: 'インクラインベンチプレス', genre_id: 1, part_id: 1)
-Training.create!(name: 'デクラインベンチプレス', genre_id: 1, part_id: 1)
-Training.create!(name: 'ベントアームプルオーバー', genre_id: 1, part_id: 1)
-
+Training.create!(name: 'ダンベルプレス', genre_id: 2, part_id: 1)
 Training.create!(name: 'ダンベルフライ', genre_id: 2, part_id: 1)
-Training.create!(name: 'インクラインダンベルベンチプレス', genre_id: 2, part_id: 1)
-Training.create!(name: 'ダンベルベンチプレス', genre_id: 2, part_id: 1)
-Training.create!(name: 'ダンベルプルオーバー', genre_id: 2, part_id: 1)
+
+
+Training.create!(name: 'ダンベルカール', genre_id: 2, part_id: 4)
+Training.create!(name: 'ハンマーカール', genre_id: 2, part_id: 4)
+Training.create!(name: 'キックバック', genre_id: 2, part_id: 4)
+Training.create!(name: 'フレンチプレス', genre_id: 2, part_id: 4)
+
+Training.create!(name: 'フロントレイズ', genre_id: 2, part_id: 3)
+Training.create!(name: 'サイドレイズ', genre_id: 2, part_id: 3)
+Training.create!(name: 'ダンベルリアレイズ', genre_id: 2, part_id: 3)
+
+Training.create!(name: 'デッドリフト', genre_id: 1, part_id: 2)
+
+Training.create!(name: 'クランチ', genre_id: 4, part_id: 5)
+Training.create!(name: 'アブローラー', genre_id: 4, part_id: 5)
+
+Training.create!(name: 'スクワット', genre_id: 1, part_id: 6)
+
+Training.create!(name: 'チェストプレス', genre_id: 3, part_id: 1)
+Training.create!(name: 'チェストフライ', genre_id: 3, part_id: 1)
+Training.create!(name: 'ケーブルクロスオーバー', genre_id: 3, part_id: 1)
+
+Training.create!(name: 'プリチャーカール', genre_id: 3, part_id: 4)
+Training.create!(name: 'ケーブルプレスダウン', genre_id: 3, part_id: 4)
+Training.create!(name: 'ディップス', genre_id: 3, part_id: 4)
+
+Training.create!(name: 'ケーブルフロントレイズ', genre_id: 3, part_id: 3)
+Training.create!(name: 'マシンショルダープレス', genre_id: 3, part_id: 3)
+Training.create!(name: 'ケーブルリアレイズ', genre_id: 3, part_id: 3)
+
+Training.create!(name: 'ラットプルダウン', genre_id: 3, part_id: 2)
+Training.create!(name: 'シーテッドロー', genre_id: 3, part_id: 2)
+
+Training.create!(name: 'アブドミナル', genre_id: 3, part_id: 5)
+Training.create!(name: 'トーソローテーション', genre_id: 3, part_id: 5)
+
+Training.create!(name: 'レッグプレス', genre_id: 3, part_id: 6)
+Training.create!(name: 'レッグエクステンション', genre_id: 3, part_id: 6)
+Training.create!(name: 'レッグカール', genre_id: 3, part_id: 6)
+
 
 TrainingRecord.create!(record_id: 1, training_id: 1, weight: 80, rep: 7, set: 3)
 TrainingRecord.create!(record_id: 1, training_id: 2, weight: 80, rep: 7, set: 3)
