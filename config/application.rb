@@ -21,5 +21,8 @@ module KintoreNote
     
     #日本語化対応(config/locales/ja.ymlを参照)
     config.i18n.default_locale = :ja
+    
+    # バリデーションエラー時のfield_with_errorsの自動挿入を阻止
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
   end
 end

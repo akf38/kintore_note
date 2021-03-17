@@ -26,8 +26,13 @@ class User < ApplicationRecord
   has_many :followed,              through:     :passive_relationships,
                                    source:      :follower
   
-  validates :name,  presence: true 
-  validates :email, presence: true, uniqueness: true
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  
+  validates :name,                presence: true 
+  validates :email,               presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
+  validates :weight,              presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates :body_fat_percentage, presence: true, numericality: { greater_than_or_equal_to: 0, less_than: 100 }
+  validates :profile,             length: { maximum: 300 } 
   
   # フォローする
   def follow(other_user)

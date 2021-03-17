@@ -3,23 +3,41 @@
     <h2><%= "#{@today_date}トレーニング詳細" %></h2>
   </row>
   <row>
+    <div class=' col-sm-10 mt-3'>
       <%= render 'layouts/errors', obj: @training_record %>
       <%= form_with model: @training_record, url: training_records_new_record_create_path, local: true do |f| %>
+        <div class='d-flex mb-3'>
+          <div>
+            <% category_options = Part.order(:id).map{|c| [c.name, c.id, data: { children_path: part_trainings_path(c)}] } %>
+            <%= f.select :part_id, category_options, {include_blank: 'ーー部位を選択ーー' }, class: 'select-parent' %>
+          </div>
+          
+          <div>
+            <% sub_categories = Part.try(:trainings) || [] %>
+            <% sub_category_options = sub_categories.map{ |c| [c.name, c.id] } %>
+            <%= f.select :training_id, sub_category_options, { include_blank: 'ーー部位別トレーニング一覧ーー' }, class: 'select-children' %>
+          </div>
+        </div>
         
-        <% category_options = Part.order(:id).map{|c| [c.name, c.id, data: { children_path: part_trainings_path(c)}] } %>
-        <%= f.select :part_id, category_options, {include_blank: 'ーー部位を選択ーー' }, class: 'select-parent my-3' %>
-        
-        <% sub_categories = Part.try(:trainings) || [] %>
-        <% sub_category_options = sub_categories.map{ |c| [c.name, c.id] } %>
-        <%= f.select :training_id, sub_category_options, { include_blank: 'ーー部位別トレーニング一覧ーー' }, class: 'select-children my-3' %><br />
-        
-        <%= f.number_field :weight, class: 'mb-4' %>kg
-        <%= f.number_field :rep %>回
-        <%= f.number_field :set %>セット
-        
-        <%= f.submit '記録する', class: ' btn btn-primary' %>
-        
-    <% end %>
+        <div class='d-flex mb-4 align-items-center'>
+          <div>
+            <%= f.number_field :weight, class: 'training_number_form' %>kg
+          </div>
+          
+          <div>
+            <%= f.number_field :rep, class: 'ml-1 training_number_form' %>回
+          </div>
+          
+          <div>
+            <%= f.number_field :set, class: 'ml-1 training_number_form' %>セット
+          </div>
+          
+          <div>
+            <%= f.submit '記録する', class: 'btn btn-primary' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </row>
   <row>
     <table class="table">

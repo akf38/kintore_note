@@ -28,7 +28,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color: #6c6b6b;
 }
 
 i{
@@ -42,4 +41,12 @@ i{
 .user-dropdown, .user-dropdown:hover{
   background-color: transparent;
   border: 0px none;
+}
+
+#error_explanation{
+  color: red;
+}
+
+#error_explanation > ul >li{
+  margin-left: 20px;
 }

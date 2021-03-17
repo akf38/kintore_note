@@ -4,7 +4,7 @@ class RecordsController < ApplicationController
   
   def index
     @records = current_user.records
-    @record = Record.find_by(created_at: Time.zone.now.beginning_of_day, user_id: current_user.id) || Record.new
+    @record = Record.find_by(created_at: Time.zone.now.all_day, user_id: current_user.id) || Record.new
   end
   
   def show
@@ -14,7 +14,7 @@ class RecordsController < ApplicationController
   end
   
   def new 
-    if @record = Record.find_by(created_at: Time.zone.now.beginning_of_day, user_id: current_user.id)
+    if @record = Record.find_by(created_at: Time.zone.now.all_day, user_id: current_user.id)
       redirect_to record_path(@record)
     else
       # 本日の日付を取得。

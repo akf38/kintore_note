@@ -81,6 +81,7 @@ gem "omniauth", "~> 1.9.1"
 gem 'bullet'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
+gem 'rails-i18n'
 
 group :production do
   gem 'mysql2'
