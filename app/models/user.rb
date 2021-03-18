@@ -30,8 +30,9 @@ class User < ApplicationRecord
   
   validates :name,                presence: true 
   validates :email,               presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
-  validates :weight,              presence: true, numericality: { greater_than_or_equal_to: 0 }
-  validates :body_fat_percentage, presence: true, numericality: { greater_than_or_equal_to: 0, less_than: 100 }
+  validates :tall,                numericality: { greater_than: 0 }
+  validates :weight,              numericality: { greater_than: 0 }
+  validates :body_fat_percentage, numericality: { greater_than: 0, less_than: 100 }
   validates :profile,             length: { maximum: 300 } 
   
   # フォローする
