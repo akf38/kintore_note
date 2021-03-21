@@ -20,7 +20,7 @@ require 'rails_helper'
         expect(current_path).to eq "/users/#{user1.id}"
         find('.navbar-toggler').click
         find(".nakama").click
-        #expect(current_path).to eq '/users'
+        expect(current_path).to eq '/users'
       end
       it '特定のユーザーのフォローボタンを押下すると、新規relationshipデータが保存される' do
         find('.navbar-toggler').click
