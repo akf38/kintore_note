@@ -31,7 +31,7 @@ class TrainingRecordsController < ApplicationController
     @record = Record.find(params[:record_id])
     @training_record = TrainingRecord.find(params[:id])
     if @training_record.update(training_record_params)
-      redirect_to edit_record_path(@record)
+      redirect_to record_path(@record)
     else
       render 'records/edit'
     end

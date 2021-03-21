@@ -19,9 +19,9 @@
       </div>
       <div class='tweet-info d-flex'>
         <div id="favorite-btn-<%= tweet.id %>" class='ml-auto mr-3'><%= render 'favorites/favorite_btn', obj: tweet %></div>
-        <div class='tweet-comment mx-3'><%= link_to "コメント#{tweet.tweet_comments.count}", tweet_path(tweet.id) %></div>
+        <div class='tweet-comment mx-3'><%= link_to "コメント#{tweet.tweet_comments.count}", tweet_path(tweet.id), {id: "tweet-#{tweet.id}-show-link"} %></div>
         <% if tweet.user == current_user %>
-          <div class='mx-3'><%= link_to '削除する', tweet_path(tweet), method: :delete, remote: true %></div>
+          <div class='mx-3'><%= link_to '削除する', tweet_path(tweet), method: :delete, remote: true, id: "tweet-#{tweet.id}-delete-link" %></div>
         <% end %>
         <div class='tweet-time mx-3'><%= "#{tweet.created_at.strftime('%Y/%m/%d %H:%M:%S')}" %></div>
       </div>

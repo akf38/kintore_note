@@ -4,7 +4,7 @@
     <div class=' col-sm-10 mt-3'>
       <% if @record.user == current_user %>
       <%= render 'layouts/errors', obj: @training_record %>
-      <%= form_with model: [@record, t_record], local: true do |f| %>
+      <%= form_with model: [@record, TrainingRecord.new], local: true do |f| %>
         <div class='d-flex mb-3'>
           <div>
             <% category_options = Part.order(:id).map{|c| [c.name, c.id, data: { children_path: part_trainings_path(c)}] } %>
@@ -53,12 +53,12 @@
         <% @record.training_records.each do |t_record| %>
         <%= form_with model: [@record, t_record], local: true do |f| %>
         <tr>
-          <td><%= f.collection_select :training_id, Training.all, :id, :name, {selected: t_record.training_id } %></td>
-          <td><%= f.number_field :weight, value: t_record.weight %><br>kg</td>
-          <td><%= f.number_field :rep, value: t_record.rep %><br>回</td>
-          <td><%= f.number_field :set, value: t_record.set %><br>セット</td>
+          <td><%= f.collection_select :training_id, Training.all, :id, :name, {selected: t_record.training_id}, {id: "#{t_record.id}-training-field"} %></td>
+          <td><%= f.number_field :weight, value: t_record.weight, id: "weight-field-#{t_record.id}" %><br>kg</td>
+          <td><%= f.number_field :rep, value: t_record.rep, id: "rep-field-#{t_record.id}"%><br>回</td>
+          <td><%= f.number_field :set, value: t_record.set, id: "set-field-#{t_record.id}" %><br>セット</td>
           <% if @record.user == current_user %>
-            <td><%= f.submit '変更', class: 'btn btn-success' %></td>
+            <td><%= f.submit '変更', class: "btn btn-success", id: "update-btn-#{t_record.id}" %></td>
             <td><%= link_to '削除', record_training_record_path(@record.id, t_record.id), method: :delete, class: 'btn btn-danger' %></td>
           <% end %>
         </tr>
