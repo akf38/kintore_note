@@ -105,7 +105,7 @@ require 'rails_helper'
     let!(:tweet1) { create(:tweet, content: 'あ'*rand(1..300), user_id: user1.id) }
     let!(:tweet2) { create(:tweet, content: 'あ'*rand(1..300), user_id: user2.id) }
     let!(:tweet_comment1) { create(:tweet_comment, content: 'い'*rand(1..300), tweet_id: tweet1.id, user_id: user2.id) }
-    let!(:tweet_comment2) { build(:tweet_comment, content: 'い'*rand(1..300) ) }
+    let!(:tweet_comment2) { build(:tweet_comment, content: 'う'*rand(1..300) ) }
     
     before do
       visit new_user_session_path
@@ -143,7 +143,7 @@ require 'rails_helper'
         click_on '投稿する'
         expect(current_path).to eq '/tweets/1'
         expect(page).to have_content "#{tweet_comment2.content}"
-        find('#tweet-comment-2-delete-link').click
+        find("#tweet-comment-2-delete-link").click
         expect(current_path).to eq '/tweets/1'
         expect(page).to_not have_content "#{tweet_comment2.content}"
       end
