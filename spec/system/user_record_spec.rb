@@ -8,6 +8,7 @@ describe 'ユーザー体型情報のテスト' , js: true do
         visit root_path
       end
       it '新規登録時に入力した体型情報がUserレコード、UserInfosレコードともに保存される' do
+        find('.navbar-toggler').click
         click_on '新規登録'
         expect(current_path).to eq '/users/sign_up'
         fill_in 'user[name]', with: user1.name

@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   
   def index
-    @users = User.all
+    @users = User.all.page(params[:page]).per(15)
   end
   
   def show
@@ -14,10 +14,10 @@ class UsersController < ApplicationController
     
     if @user == current_user
       # 自分+フォロー中ユーザーの投稿一覧
-      @tweets = Tweet.includes([:user]).where("user_id IN (?) OR user_id = ?", current_user.following_ids, current_user.id).order(created_at: :desc).limit(30)
+      @tweets = Tweet.includes([:user]).where("user_id IN (?) OR user_id = ?", current_user.following_ids, current_user.id).order(created_at: :desc).page(params[:page]).per(15)
     else
       # 自分+フォロー中ユーザーの投稿一覧
-      @tweets = Tweet.includes([:user]).where(user_id: @user.id).order(created_at: :desc).limit(30)
+      @tweets = Tweet.includes([:user]).where(user_id: @user.id).order(created_at: :desc).page(params[:page]).per(15)
     end
   end
   

@@ -1,3 +1,12 @@
-// Place all the styles related to the user_infos controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.number-fields{
+  width: 70px;
+}
+
+@media screen and (max-width:576px) {
+  th{
+    width: 50px;
+  }
+  .number-fields{
+  width: 30px;
+  }
+}

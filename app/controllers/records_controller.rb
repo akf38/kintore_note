@@ -3,7 +3,7 @@ class RecordsController < ApplicationController
   before_action :ensure_correct_user, only: [:edit]
   
   def index
-    @records = current_user.records
+    @records = current_user.records.page(params[:page]).per(15)
     @record = Record.find_by(created_at: Time.zone.now.all_day, user_id: current_user.id) || Record.new
   end
   
@@ -26,6 +26,7 @@ class RecordsController < ApplicationController
   
   def edit
     @record = Record.find(params[:id])
+    @training_records = TrainingRecord.includes([:training]).where(record_id: @record.id)
     @training_record = TrainingRecord.new
   end
   

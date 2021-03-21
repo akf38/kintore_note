@@ -37,15 +37,19 @@ require 'rails_helper'
       end
       context '新規登録後、ヘッダがログイン後の表示に変わっている' do
         it '「マイページ」と表示される' do
+          find('.navbar-toggler').click
           expect(page).to have_link 'マイページ'
         end
         it '「記録する」と表示される' do
+          find('.navbar-toggler').click
           expect(page).to have_link'記録する'
         end
         it '「カート」と表示される' do
+          find('.navbar-toggler').click
           expect(page).to have_link 'つぶやく'
         end
         it '「ログアウト」と表示される' do
+          find('.navbar-toggler').click
           expect(page).to have_link '仲間を探す'
         end
       end
@@ -86,19 +90,24 @@ require 'rails_helper'
       end
       context 'ログイン後、ヘッダがログイン後の表示に変わっている' do
         it '「マイページ」と表示される' do
+          find('.navbar-toggler').click
           expect(page).to have_link 'マイページ'
         end
         it '「記録する」と表示される' do
+          find('.navbar-toggler').click
           expect(page).to have_link'記録する'
         end
         it '「カート」と表示される' do
+          find('.navbar-toggler').click
           expect(page).to have_link 'つぶやく'
         end
         it '「ログアウト」と表示される' do
+          find('.navbar-toggler').click
           expect(page).to have_link '仲間を探す'
         end
       end
       it 'ログアウトボタン押下で、ログアウトできる' do
+        find('.navbar-toggler').click
         find('.user-dropdown').click
         find('.sign-out').click
         expect(current_path).to eq '/'

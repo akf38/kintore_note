@@ -50,3 +50,16 @@ i{
 #error_explanation > ul >li{
   margin-left: 20px;
 }
+
+// レスポンシブ対応
+@media screen and (max-width:992px) {
+  .header-nav-item {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width:576px) {
+  .container{
+    padding: 0;
+  }
+}
