@@ -35,12 +35,12 @@
                  <% end %>
                </li>
                <li class="nav-item">
-                 <%= link_to tweets_path, {class: 'nav-link btn btn-danger mr-3 border-dark', data: {"turbolinks" => false}} do %>
+                 <%= link_to tweets_path, {class: 'nav-link btn btn-danger mr-3 border-dark tubuyaku', data: {"turbolinks" => false}} do %>
                    <i class="far fa-comment-alt text-white font-weight-bold">つぶやく！</i>
                  <% end %>
                </li>
                <li class="nav-item">
-                 <%= link_to users_path, {class: 'nav-link btn btn-danger mr-3 border-dark'} do %>
+                 <%= link_to users_path, {class: 'nav-link btn btn-danger mr-3 border-dark nakama'} do %>
                    <i class="far fa-user-friends text-white font-weight-bold">仲間を探す！</i>
                  <% end %>
                </li>
@@ -60,7 +60,7 @@
                         <i class="fas fa-file-alt font-weight-bold dropdown-item p-3 pb-4"> 利用規約</i>
                       <% end %>
                       <%= link_to destroy_user_session_path, method: :delete do %>
-                        <i class="fas fa-sign-out-alt font-weight-bold dropdown-item p-3 pt-4 border-top"> ログアウト</i>
+                        <i class="fas fa-sign-out-alt font-weight-bold dropdown-item p-3 pt-4 border-top sign-out"> ログアウト</i>
                       <% end %>
                    </div>
                  </div>

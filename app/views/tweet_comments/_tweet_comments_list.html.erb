@@ -6,7 +6,7 @@
   <p><%= comment.content %></p>
   <%= attachment_image_tag comment, :image, size: '100x100', class: 'mb-3' %>
   <% if comment.user == current_user %>
-    <%= link_to '削除する', tweet_tweet_comment_path(obj2.id,comment.id), method: :delete, remote: true %>
+    <%= link_to '削除する', tweet_tweet_comment_path(obj2.id,comment.id), {method: :delete, remote: true, id: "tweet-comment-#{comment.id}-delete-link"} %>
   <% end %>
 </div>
 <% end %>
