@@ -13,7 +13,7 @@
         </div>
         <ul class="nav nav-tabs">
           <li class="nav-item">
-            <a href="#user-weight-graph" class="nav-link border" data-toggle='tab active'>体重(kg)</a>
+            <a href="#user-weight-graph" class="nav-link border" data-toggle='tab' id="fast_active">体重(kg)</a>
           </li>
           <li class="nav-item">
             <a href="#user-body_fat_percentage-graph" class="nav-link border" data-toggle='tab'>体脂肪率(%)</a>
@@ -23,7 +23,7 @@
           <div id='user-weight-graph' class='tab-pane active'>
             <%= line_chart @weight_data, height: "200px"%>
           </div>
-          <div id='user-body_fat_percentage-graph' class='tab-pane'>
+          <div id='user-body_fat_percentage-graph' class='tab-pane active'>
             <%= line_chart @body_fat_percentage_data, height: "200px" %>
           </div>
         </div>
@@ -35,3 +35,7 @@
   </div>
   </div>
 </div>
+<script>
+  $("#user-body_fat_percentage-graph").removeClass("active");
+  $("#fast_active").addClass("active");
+</script>
