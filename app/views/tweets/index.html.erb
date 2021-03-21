@@ -1,9 +1,9 @@
-<div class="container mt-3">
+<div class="container-fluid mt-3">
   <div class="row">
-    <div class="col-4 user-info">
+    <div class="col-lg-3 offset-lg-1 user-info user-info-tweet">
       <%= render 'layouts/user_sidebar', obj: current_user %>
     </div>
-    <div class="col-8">
+    <div class="col-lg-6 offset-lg-1">
       <div class="new-tweet-container rounded-lg shadow bg-warning border mb-3">
         <%= render 'tweets/new_tweet_form', resource: @tweet %>
       </div>

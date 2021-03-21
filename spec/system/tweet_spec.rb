@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-  describe 'Tweetのテスト' do
+  describe 'Tweetのテスト', js: true do
     
     let!(:user1) { create(:user) }
     let!(:user2) { create(:user) }
@@ -18,20 +18,21 @@ require 'rails_helper'
     
     context 'Tweet新規投稿のテスト' do
       it 'ヘッダーの「つぶやく！」ボタンを押下後、ツイート一覧ページへ遷移する' do
+        find('.navbar-toggler').click
         find(".tubuyaku").click
         expect(current_path).to eq '/tweets'
       end
       it 'ツイートを新規投稿し、自分自身のタイムラインに表示される' do
+        find('.navbar-toggler').click
         find(".tubuyaku").click
         fill_in 'tweet[content]', with: tweet1.content
-        find('.tag_form').set('プロテイン')
         click_on '投稿する'
         expect(current_path).to eq '/tweets'
         expect(page).to have_content "#{tweet1.content}"
-        expect(page).to have_content 'プロテイン'
       end
       
-      it 'フォロー中の異なるユーザーの投稿が、タイムラインに表示されている', js: true do
+      it 'フォロー中の異なるユーザーの投稿が、タイムラインに表示されている' do
+        find('.navbar-toggler').click
         find('.user-dropdown').click
         find('.sign-out').click
         expect(current_path).to eq '/'
@@ -39,11 +40,13 @@ require 'rails_helper'
         fill_in 'user[email]', with: user2.email
         fill_in 'user[password]', with: user2.password
         click_button 'ログインする'
+        find('.navbar-toggler').click
         find(".tubuyaku").click
         fill_in 'tweet[content]', with: tweet2.content
         click_on '投稿する'
         expect(current_path).to eq '/tweets'
         expect(page).to have_content "#{tweet2.content}"
+        find('.navbar-toggler').click
         find('.user-dropdown').click
         find('.sign-out').click
         expect(current_path).to eq '/'
@@ -51,6 +54,7 @@ require 'rails_helper'
         fill_in 'user[email]', with: user1.email
         fill_in 'user[password]', with: user1.password
         click_button 'ログインする'
+        find('.navbar-toggler').click
         find(".tubuyaku").click
         expect(current_path).to eq '/tweets'
         expect(page).to have_content "#{tweet2.content}"
@@ -59,24 +63,24 @@ require 'rails_helper'
       
     context 'Tweet投稿削除のテスト' do
       it '自分の投稿したツイートが削除できる' do
+        find('.navbar-toggler').click
         find(".tubuyaku").click
         fill_in 'tweet[content]', with: tweet1.content
-        find('.tag_form').set('プロテイン')
         click_on '投稿する'
         expect(current_path).to eq '/tweets'
         expect(page).to have_content "#{tweet1.content}"
-        expect(page).to have_content 'プロテイン'
         find('#tweet-1-delete-link').click
         expect(current_path).to eq '/tweets'
         expect(page).to_not have_content "#{tweet1.content}"
-        expect(page).to_not have_content 'プロテイン'
       end
       it '他人の投稿したツイートを削除できない', js: true do
+        find('.navbar-toggler').click
         find(".tubuyaku").click
         fill_in 'tweet[content]', with: tweet1.content
         click_on '投稿する'
         expect(current_path).to eq '/tweets'
         expect(page).to have_content "#{tweet1.content}"
+        find('.navbar-toggler').click
         find('.user-dropdown').click
         find('.sign-out').click
         expect(current_path).to eq '/'
@@ -84,6 +88,7 @@ require 'rails_helper'
         fill_in 'user[email]', with: user2.email
         fill_in 'user[password]', with: user2.password
         click_button 'ログインする'
+        find('.navbar-toggler').click
         find(".tubuyaku").click
         expect(current_path).to eq '/tweets'
         expect(page).to have_content "#{tweet1.content}"
@@ -111,12 +116,14 @@ require 'rails_helper'
     
     context 'TweetComment新規投稿のテスト' do
       it 'ヘッダーの「つぶやく！」ボタンを押下、個別ツイートページへ遷移する' do
+        find('.navbar-toggler').click
         find(".tubuyaku").click
         expect(current_path).to eq '/tweets'
         find('#tweet-1-show-link').click
         expect(current_path).to eq '/tweets/1'
       end
       it '個別ツイートページにてツイートコメントを投稿できる' do
+        find('.navbar-toggler').click
         find(".tubuyaku").click
         expect(current_path).to eq '/tweets'
         find('#tweet-1-show-link').click
@@ -127,6 +134,7 @@ require 'rails_helper'
         expect(page).to have_content "#{tweet_comment1.content}"
       end
       it '自分の投稿したツイートコメントを削除できる' do
+        find('.navbar-toggler').click
         find(".tubuyaku").click
         expect(current_path).to eq '/tweets'
         find('#tweet-1-show-link').click
@@ -141,6 +149,7 @@ require 'rails_helper'
       end
       
       it '他ユーザーの投稿したツイートコメントは削除できない' do
+        find('.navbar-toggler').click
         find(".tubuyaku").click
         expect(current_path).to eq '/tweets'
         find('#tweet-1-show-link').click

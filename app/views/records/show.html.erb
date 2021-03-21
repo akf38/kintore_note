@@ -1,63 +1,62 @@
-<div class="container">
-  <h2><%= "#{@record.created_at.strftime('%Y/%m/%d')}トレーニング詳細" %></h2>
-  <% if @record.user == current_user %>
-    <%= link_to 'トレーニング内容の編集はこちら', edit_record_path(@record), data: {"turbolinks" => false} %>
-  <% end %>
-  <row>
-    <div class=' col-sm-10 mt-3'>
-      <% if @record.user == current_user %>
-        <%= render 'layouts/errors', obj: @training_record %>
-        <%= form_with model: [@record,@training_record], local: true do |f| %>
-          <div class='d-flex mb-3'>
-            <div>
-              <% category_options = Part.order(:id).map{|c| [c.name, c.id, data: { children_path: part_trainings_path(c)}] } %>
-              <%= f.select :part_id, category_options, {include_blank: 'ーー部位を選択ーー' }, class: 'select-parent' %>
-            </div>
-            
-            <div>
-              <% sub_categories = Part.try(:trainings) || [] %>
-              <% sub_category_options = sub_categories.map{ |c| [c.name, c.id] } %>
-              <%= f.select :training_id, sub_category_options, { include_blank: 'ーー部位別トレーニング一覧ーー' }, class: 'select-children' %>
-            </div>
-          </div>
-          
-          <div class='d-flex mb-4 align-items-center'>
-            <div>
-              <%= f.number_field :weight, class: 'training_number_form' %>kg
-            </div>
-            
-            <div>
-              <%= f.number_field :rep, class: 'ml-1 training_number_form' %>回
-            </div>
-            
-            <div>
-              <%= f.number_field :set, class: 'ml-1 training_number_form' %>セット
-            </div>
-            
-            <div>
-              <%= f.submit '記録する', class: 'btn btn-primary' %>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
+<div class="container-fluid">
+  <div class='row'>
+    <div class=' col-lg-10 offset-lg-1 mt-3'>
+    <h2 class='text-center my-4'><span class='training-note-title-part'><%= @record.created_at.strftime('%Y/%m/%d') %></span><span class='training-note-title-part'>トレーニング詳細</span></h2>
+    <% if @record.user == current_user %>
+      <%= link_to 'トレーニング内容の編集はこちら', edit_record_path(@record), data: {"turbolinks" => false} %>
+    <% end %>
+    <%= render 'layouts/errors', obj: @training_record %>
+    <%= form_with model: [@record,@training_record], local: true do |f| %>
+      <div class='mt-3'>
+        <div class='mb-2'>
+          <% category_options = Part.order(:id).map{|c| [c.name, c.id, data: { children_path: part_trainings_path(c)}] } %>
+          <%= f.select :part_id, category_options, {include_blank: 'ーー部位を選択ーー' }, class: 'select-parent' %>
+        </div>
+        <div class='mb-3'>
+          <% sub_categories = Part.try(:trainings) || [] %>
+          <% sub_category_options = sub_categories.map{ |c| [c.name, c.id] } %>
+          <%= f.select :training_id, sub_category_options, { include_blank: 'ーー部位別トレーニング一覧ーー' }, class: 'select-children' %>
+        </div>
+      </div>
+      <div class='d-flex mb-4 align-items-center'>
+        <div>
+          <%= f.number_field :weight, class: 'training_number_form' %><span class='training-form-unit-part'>kg</span>
+        </div>
+        
+        <div>
+          <%= f.number_field :rep, class: 'ml-2 training_number_form' %><span class='training-form-unit-part'>回</span>
+        </div>
+        
+        <div>
+          <%= f.number_field :set, class: 'ml-2 training_number_form' %><span class='training-form-unit-part'>セット</span>
+        </div>
+        <div>
+          <%= f.submit '記録する', class: 'btn btn-primary ml-1' %>
+        </div>
+      </div>
+    <% end %>
     </div>
-  </row>
-  <table class="table table-hover">
-    <thead>
-      <th>トレーニング名</th>
-      <th>重量</th>
-      <th>レップ数</th>
-      <th>セット数</th>
-    </thead>
-    <tbody>
-      <% @training_records.each do |t_record| %>
-      <tr>
-        <td><%= t_record.training.name %></td>
-        <td><%= t_record.weight %>kg</td>
-        <td><%= t_record.rep %>回</td>
-        <td><%= t_record.set %>セット</td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+  </div>
+  <div class="row">
+    <div class='col-lg-10 offset-lg-1'>
+      <table class="table">
+        <thead>
+          <th>トレーニング名</th>
+          <th>重量</th></th>
+          <th>レップ</th>
+          <th>セット</th>
+        </thead>
+        <tbody>
+          <% @training_records.each do |t_record| %>
+          <tr>
+            <td><%= t_record.training.name %></td>
+            <td><%= t_record.weight %><span class='training-form-unit-part'>kg</span></td>
+            <td><%= t_record.rep %><span class='training-form-unit-part'>回</span></td>
+            <td><%= t_record.set %><span class='training-form-unit-part'>セット</span></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
