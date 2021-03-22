@@ -18,9 +18,9 @@ RSpec.describe User, "モデルに関するテスト", type: :model do
       expect(user.errors[:email]).to include("が入力されていません。", "は有効でありません。")
     end
     it "emailの形式が正しくない場合に、不正な値のエラーメッセージが返ってきているか" do
-      user = FactoryBot.build(:user, email: "")
+      user = FactoryBot.build(:user, email: "a" * 10)
       expect(user).to be_invalid
-      expect(user.errors[:email]).to include("が入力されていません。", "は有効でありません。")
+      expect(user.errors[:email]).to include("は有効でありません。")
     end
     it "emailが登録済みである場合に、登録済みのエラーメッセージが返ってきているか" do
       FactoryBot.create(:user, email: "abcd@abcd.com")
@@ -39,12 +39,12 @@ RSpec.describe User, "モデルに関するテスト", type: :model do
       expect(user.errors[:password]).to include("が入力されていません。")
     end
     it "passwordとpassword_confirmationが6文字未満の場合に、文字数のエラーメッセージが返ってきているか" do
-      user = FactoryBot.build(:user, password: "a"*5, password_confirmation: "a"*5)
+      user = FactoryBot.build(:user, password: "a" * 5, password_confirmation: "a" * 5)
       expect(user).to be_invalid
       expect(user.errors[:password]).to include("は6文字以上に設定して下さい。")
     end
     it "passwordとpassword_confirmationが一致しない場合に、不一致のエラーメッセージが返ってきているか" do
-      user = FactoryBot.build(:user, password: "a"*6, password_confirmation: "a"*10)
+      user = FactoryBot.build(:user, password: "a" * 6, password_confirmation: "a" * 10)
       expect(user).to be_invalid
       expect(user.errors[:password_confirmation]).to include("とパスワードの入力が一致しません")
     end
