@@ -34,7 +34,7 @@
       <p class="user-data"><%= obj.body_fat_percentage || '未入力'%>%</p>
   </div>
 </div>
-<div class="calender-box">
+<div class="calender-box d-flex justify-content-center">
   <%= month_calendar events: obj.records do |date, records| %>
     <%= date.day %>
     <% records.each do |record| %>
