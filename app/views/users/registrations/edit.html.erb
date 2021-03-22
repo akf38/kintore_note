@@ -1,3 +1,5 @@
+
+
 <div class='user-form-background'>
   <div class="container">
     <div class="row">
@@ -13,23 +15,22 @@
                   <tr class='user-field'><td><%= f.label :name, 'ユーザー名:', {class: 'ml-4 mb-3'} %></td><td><%= f.text_field :name, autofocus: true, class: 'mr-3 mb-3' %></td></tr>
                   <tr class='user-field'><td><%= f.label :email, 'メールアドレス:', {class: 'ml-4 mb-3'} %></td><td><%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'mr-3 mb-3' %></td></tr>
                   <tr class='user-field'><td><%= f.label :profile, 'プロフィール:', {class: 'ml-4'} %></td><td><%= f.text_area :profile, autofocus: true, class: 'mr-3 mb-3' %></td></tr>
-                  <tr class='user-field'><td><%= f.label :image, 'プロフィール画像:　', {class: 'ml-4'} %></td><td><%= f.attachment_field :image, class: 'mr-3 mb-3' %></td></tr>
                   <tr class='user-field'><td><%= f.label :start_date, '筋トレ開始日:', {class: 'ml-4'} %></td><td><%= f.date_field :start_date, class: 'mr-3 mb-3' %></td></tr>
                 </tbody>
               </table>
             
               <div class="actions text-center mt-4">
-                <%= f.submit "変更内容を保存する", {class: 'btn btn-success mb-3'}%><br>
-              </div>
+                <%= f.submit "変更内容を保存する", {class: 'btn btn-success mb-3'}%>
             <% end %>
           </div>
-          <%= link_to '退会', soft_delete_user_path(@user), method: :post, 'data-confirm' => '本当に退会しますか？', class: 'btn btn-danger' %>  
+          <div class='d-flex justify-content-end'>
+            <%= link_to '退会', soft_delete_user_path(@user), method: :post, 'data-confirm' => '本当に退会しますか？', class: 'btn btn-danger' %>  
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
 
 
 

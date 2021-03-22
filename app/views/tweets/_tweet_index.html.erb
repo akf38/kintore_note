@@ -5,27 +5,30 @@
     <div class="tweet border-bottom m-3 bg-white rounded">
       <div class='tweet-main  d-flex justify-content-between'>
         <div class='tweet-left ml-3'>
-          <%= attachment_image_tag tweet.user, :image, fallback: 'no_image.jpg', size: '40x40', class: 'm-3 rounded-circle' %><span class='font-weight-bold'><%= "#{tweet.user.name}" %></span>
-          <p class='ml-4 my-1'><%= tweet.content %></p>
-          <p>
+          <%= attachment_image_tag tweet.user, :image, fallback: 'no_image.jpg', size: '40x40', class: 'ml-1 mr-3 my-3 rounded-circle' %><span class='font-weight-bold'><%= "#{tweet.user.name}" %></span>
+          <div><%= tweet.content %></div>
+          <div class='ml-1'>
             <% tweet.tag_counts.each do |tag| %>
               <%= link_to "##{tag.name}(#{tag.taggings_count})", tweets_path(tag: tag.name), {class: 'mr-2', data: {"turbolinks" => false}} %>
             <% end %>
-          </p>
+          </div>
         </div>
         <div class='tweet-right mr-3 d-flex align-items-center'>
           <%= attachment_image_tag tweet, :image, size: '100x100' %>
         </div>
       </div>
       <div class='tweet-info d-flex'>
-        <div id="favorite-btn-<%= tweet.id %>" class='ml-auto mr-3'><%= render 'favorites/favorite_btn', obj: tweet %></div>
-        <div class='tweet-comment mx-3'><%= link_to "コメント#{tweet.tweet_comments.count}", tweet_path(tweet.id) %></div>
+        <div id="favorite-btn-<%= tweet.id %>" class='ml-auto mr-1'><%= render 'favorites/favorite_btn', obj: tweet %></div>
+        <div class='tweet-comment mx-1'><%= link_to "コメント#{tweet.tweet_comments.count}", tweet_path(tweet.id), {id: "tweet-#{tweet.id}-show-link"} %></div>
         <% if tweet.user == current_user %>
-          <div class='mx-3'><%= link_to '削除する', tweet_path(tweet), method: :delete, remote: true %></div>
+          <div class='mx-1'><%= link_to '削除する', tweet_path(tweet), method: :delete, remote: true, id: "tweet-#{tweet.id}-delete-link" %></div>
         <% end %>
-        <div class='tweet-time mx-3'><%= "#{tweet.created_at.strftime('%Y/%m/%d %H:%M:%S')}" %></div>
+        <div class='tweet-time mx-1'><%= "#{tweet.created_at.strftime('%Y/%m/%d %H:%M:%S')}" %></div>
       </div>
     </div>
     <% end %>
+  </div>
+  <div class='kaminari d-flex justify-content-center'>
+    <%= paginate obj %>
   </div>
 </div>

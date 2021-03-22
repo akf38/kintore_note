@@ -14,7 +14,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
     # ユーザー新規登録成功時に体型情報テーブルにも同時登録
     if user_signed_in?
-      UserInfo.create(user_id: current_user.id, weight: current_user.weight, body_fat_percentage: current_user.body_fat_percentage)
+      UserInfo.create(user_id: current_user.id,
+                      weight: current_user.weight,
+                      body_fat_percentage: current_user.body_fat_percentage)
     end
   end
 
@@ -43,27 +45,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   protected
-  
+
   # パスワードなしで更新するメソッドの呼び出し。
   def update_resource(resource, params)
     resource.update_without_password(params)
   end
-  
+
   # アカウント登録後のリダイレクト先
   def after_sign_up_path_for(resource)
     user_path(resource)
   end
-  
-  # ログイン後のリダイレクト先
-  def after_sign_in_path_for(resource)
-    user_path(resource)
-  end 
 
   # ユーザー情報更新後のリダイレクト先を指定。
   def after_update_path_for(_resource)
     user_path(_resource)
   end
-  
+
   def configure_account_update_params
     devise_parameter_sanitizer.permit(:account_update, keys: [:name])
   end

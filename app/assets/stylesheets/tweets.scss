@@ -25,3 +25,15 @@
   color: #FF0099;
   text-decoration: none;
 }
+
+@media screen and (max-width:576px) {
+  .tweet-info{
+    font-size: 10px;
+    div{
+      margin: 0;
+    }
+  }
+  .user-info-tweet{
+    display: none;
+  }
+}

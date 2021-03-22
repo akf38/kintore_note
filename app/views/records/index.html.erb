@@ -1,20 +1,25 @@
-<div class="container">
-  <h2>トレーニングノート</h2>
-  <%= link_to '今日のトレーニングを記録する', new_record_path, data: {"turbolinks" => false} %>
-  <table class="table">
-    <thead>
-      <th>日付</th>
-      <th>コメント</th></th>
-      <th></th>
-    </thead>
-    <tbody>
-      <% @records.each do |record| %>
-      <tr>
-        <td><%= record.created_at.strftime('%Y年%m月%d日') %></td>
-        <td><%= record.comment %></td>
-        <td><%= link_to '詳細', record_path(record.id), {class: 'btn btn-success', data: {"turbolinks" => false}} %></td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
+<div class="container-fluid">
+  <div class='row'>
+    <div class='col-lg-8 offset-lg-2'>
+      <h2 class='text-center my-3'>トレーニングノート</h2>
+      <%= link_to '今日のトレーニングを記録する', new_record_path, data: {"turbolinks" => false} %>
+      <table class="table">
+        <thead>
+          <th>日付</th>
+          <th></th>
+        </thead>
+        <tbody>
+          <% @records.each do |record| %>
+          <tr>
+            <td><%= record.created_at.strftime('%Y年%m月%d日') %></td>
+            <td><%= link_to '詳細', record_path(record.id), {class: 'btn btn-success', data: {"turbolinks" => false}} %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+     <div class='kaminari d-flex justify-content-center'>
+      <%= paginate @records %>
+    </div>
+    </div>
+  </div>
 </div>

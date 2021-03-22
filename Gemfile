@@ -57,18 +57,19 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+  gem 'rspec-rails'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'devise', git: "https://github.com/heartcombo/devise.git",  branch: "ca-omniauth-2"
+gem 'devise', git: "https://github.com/heartcombo/devise.git", branch: "ca-omniauth-2"
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
 gem 'jquery-rails'
 gem 'font-awesome-sass', '~> 5.13'
 gem 'bootstrap', '~> 4.5'
 gem 'dotenv-rails'
-gem 'kaminari','~> 1.2.1'
+gem 'kaminari', '~> 1.2.1'
 gem 'chartkick'
 gem 'groupdate'
 gem 'simple_calendar', '~> 2.0'
@@ -81,6 +82,9 @@ gem "omniauth", "~> 1.9.1"
 gem 'bullet'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
+gem 'rails-i18n'
+gem 'faker'
+gem "factory_bot_rails"
 
 group :production do
   gem 'mysql2'
