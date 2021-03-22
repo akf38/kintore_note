@@ -21,7 +21,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     user = User.find_by(email: request.env["omniauth.auth"].info.email)
     if user != nil && user.provider != request.env["omniauth.auth"].provider
       flash[:notice] = '他サービスにて登録済みです。'
-      redirect_to new_session_path
+      redirect_to new_user_session_path
       return
     end
     @user = User.from_omniauth(request.env["omniauth.auth"])
