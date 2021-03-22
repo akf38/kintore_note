@@ -34,11 +34,11 @@
       <p class="user-data"><%= obj.body_fat_percentage || '未入力'%>%</p>
   </div>
 </div>
-<div class="calender-box d-flex justify-content-center">
+<div class="calender-box">
   <%= month_calendar events: obj.records do |date, records| %>
     <%= date.day %>
     <% records.each do |record| %>
-      <div>
+      <div "d-flex justify-content-center">
         <%= link_to record_path(record.id) do %>
           <i class="fas fa-dumbbell" style="color: red;"></i>
         <% end %>
