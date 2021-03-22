@@ -50,9 +50,13 @@
           </tr>
           <% if @record.user == current_user %>
           <tr>
-            <td style='border: none;'></td>
-            <td style='border: none;'></td>
-            <td style='border: none;' colspan='2' class='d-flex justify-content-end'><%= f.submit '変更', class: "btn btn-success ml-auto p-0", id: "update-btn-#{t_record.id}" %><%= link_to '削除', record_training_record_path(@record.id, t_record.id), method: :delete, class: 'btn btn-danger edit-delete-btn p-0' %></td>
+            <td width="25%" style='border: none;'></td>
+            <td width="25%" style='border: none;'></td>
+            <td width="50%" style='border: none;' colspan='2' class='text-right'>
+              <%= f.submit '変更', class: "btn btn-success ml-auto p-0", id: "update-btn-#{t_record.id}" %>
+              <%= link_to '削除', record_training_record_path(@record.id, t_record.id), method: :delete, class: 'btn btn-danger edit-delete-btn p-0' %>
+            </td>
+            
           </tr>
           <% end %>
           <% end %>
