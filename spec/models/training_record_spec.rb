@@ -9,11 +9,11 @@ RSpec.describe TrainingRecord, "モデルに関するテスト", type: :model do
   let!(:part) { create(:part) }
   let!(:training) { create(:training, genre_id: genre.id, part_id: part.id) }
   let!(:training_record) { build(:training_record, record_id: record.id, training_id: training.id) }
-  
+
   it "有効な内容で実際に保存してみる" do
     expect(training_record).to be_valid
   end
-  
+
   context "バリデーションチェック" do
     it "training_idが空白の場合に、空白のエラーメッセージが返ってきているか" do
       training_record.training_id = ""
@@ -56,6 +56,4 @@ RSpec.describe TrainingRecord, "モデルに関するテスト", type: :model do
       expect(training_record.errors[:set]).to include("は0以上の値にしてください")
     end
   end
-  
-  
 end
