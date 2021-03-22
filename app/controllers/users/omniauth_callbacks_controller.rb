@@ -18,6 +18,12 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   # 共通のcallbackメソッド（request.env[omniauth.auth]の中に取得したユーザー情報が入っている。）
   def callback_for(provider)
+    user = User.find_by(email: request.env["omniauth.auth"])
+    if user != nil && user.provider != request.env["omniauth.auth"].provider
+      flash[:notice] = '他サービスにて登録済みです。'
+      redirect_to new_session_path
+      return
+    end
     @user = User.from_omniauth(request.env["omniauth.auth"])
     if @user.persisted? # DBに保存済みかを確認。つまり、from_omniauthでエラーが起こってないか確認している。新規登録でも既存ユーザーのログインでもここを通る。
       sign_in_and_redirect @user, event: :authentication # this will throw if @user is not activated
