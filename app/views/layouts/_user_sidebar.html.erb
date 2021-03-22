@@ -38,7 +38,7 @@
   <%= month_calendar events: obj.records do |date, records| %>
     <%= date.day %>
     <% records.each do |record| %>
-      <div "d-flex justify-content-center">
+      <div>
         <%= link_to record_path(record.id) do %>
           <i class="fas fa-dumbbell" style="color: red;"></i>
         <% end %>

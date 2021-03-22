@@ -29,17 +29,18 @@
   border-radius: 50%;
 }
 
-.simple-calender{
-  text-align: center;  
-}
+// .simple-calendar{
+//   width: 70%;
+//   margin: 0 auto;
+// }
 
-.simple-calendar table{
-  width: 70%;
-}
+// .calendar{
+//   margin: 0 auto;
+// }
 
-.simple-calendar .day{
-  height: 40px;
-}
+// .simple-calendar .day{
+  
+// }
 
 .user_info_link{
   line-height: 100%;
@@ -64,12 +65,6 @@
 
 // レスポンシブ対応
 
-@media screen and (max-width:992px) {
-  
-  
-}
-
-@media screen and (max-width:576px) {
-  
+@media screen and (max-width:375px) {
   
 }

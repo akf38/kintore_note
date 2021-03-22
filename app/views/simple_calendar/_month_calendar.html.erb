@@ -1,10 +1,13 @@
- <div class="d-flex justify-content-center">
-    <div class="mr-4"><%= link_to '<<', calendar.url_for_previous_view %></div>
-    <div><%= start_date.year %> / <%= start_date.month %></div>
-    <div class="ml-4"><%= link_to ">>", calendar.url_for_next_view %></div>
+ <div>
+    <div class="mb-2">
+      <%= link_to '<<', calendar.url_for_previous_view %>
+      <%= start_date.year %> / <%= start_date.month %>
+      <%= link_to ">>", calendar.url_for_next_view %>
+    </div>
+    
   </div>
-<div class="simple-calendar d-flex justify-content-center">
-  <table class="table calendar">
+<div class="simple-calendar">
+  <table class="table">
     <thead>
       <tr>
         <th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th style="color: blue">土</th><th style="color: red">日</th>
