@@ -80,6 +80,7 @@ class User < ApplicationRecord
   # omniauthのコールバック時に呼ばれるメソッド
   # 既存ユーザーであればそのユーザーへ、新規ユーザーであれば新規作成したユーザーへ、emailとパスワードの値を追加で持たせる。（callbackメソッド内で使用)
   def self.from_omniauth(auth)
+    pp auth
     User.where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.name = auth.info.name
       user.email = auth.info.email
