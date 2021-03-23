@@ -63,8 +63,18 @@
   background-position: center;
 }
 
+.sns-link{
+  text-decoration: none;
+}
+
+.sns-icon{
+  width: 30px;
+  height: 30px;
+}
+
 // レスポンシブ対応
 
 @media screen and (max-width:375px) {
-  
+ 
+ 
 }

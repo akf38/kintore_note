@@ -23,15 +23,33 @@
 <div class="user_infos-count d-flex justify-content-center">
   <div class="user-info mr-4">
       <p class="user-data-label">身長</p>
-      <p class="user-data"><%= obj.tall || '未入力'%>cm</p>
+      <% if obj == current_user %>
+        <%= link_to edit_user_path(obj) do %>
+          <p class="user-data"><%= obj.tall || '未入力'%>cm</p>
+        <% end %>
+      <% else %>
+        <p class="user-data"><%= obj.tall || '未入力'%>cm</p>
+      <% end %>
   </div>
   <div class="user-info">
       <p class="user-data-label">体重</p>
-      <p class="user-data"><%= obj.weight || '未入力'%>kg</p>
+      <% if obj == current_user %>
+        <%= link_to edit_user_path(obj) do %>
+          <p class="user-data"><%= obj.weight || '未入力'%>kg</p>
+        <% end %>
+      <% else %>
+        <p class="user-data"><%= obj.weight || '未入力'%>kg</p>
+      <% end %>
   </div>
   <div class="user-info ml-4">
       <p class="user-data-label">体脂肪率</p>
-      <p class="user-data"><%= obj.body_fat_percentage || '未入力'%>%</p>
+      <% if obj == current_user %>
+        <%= link_to edit_user_path(obj) do %>
+          <p class="user-data"><%= obj.body_fat_percentage || '未入力'%>%</p>
+        <% end %>
+      <% else %>
+        <p class="user-data"><%= obj.body_fat_percentage || '未入力'%>%</p>
+      <% end %>
   </div>
 </div>
 <div class="calender-box">
