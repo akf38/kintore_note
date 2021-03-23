@@ -1,7 +1,5 @@
-
-
 <div class='user-form-background'>
-  <div class="container">
+  <div class="container-fluid">
     <div class="row">
       <div class="col-sm-6 my-4 offset-sm-3">
         <div class="main-layout-container rounded-lg shadow-lg bg-warning">
@@ -13,8 +11,8 @@
               <table class="d-flex justify-content-center mt-4">
                 <tbody>
                   <tr class='user-field'><td><%= f.label :tall, '身長:', {class: 'ml-4'} %></td><td><%= f.number_field :tall, autofocus: true, placeholder: 'cm' %> cm</td></tr>
-                  <tr class='user-field'><td><%= f.label :weight, '体重:', {class: 'ml-4 mb-3'} %></td><td><%= f.number_field :weight, autofocus: true, placeholder: 'kg' %> kg</td></tr>
-                  <tr class='user-field'><td><%= f.label :body_fat_percentage, '体脂肪率:　', {class: 'ml-4'} %></td><td><%= f.number_field :body_fat_percentage, autofocus: true, placeholder: '%' %> %</td></tr>
+                  <tr class='user-field'><td><%= f.label :weight, '体重:', {class: 'ml-4 mb-3'} %></td><td><%= f.number_field :weight, placeholder: 'kg' %> kg</td></tr>
+                  <tr class='user-field'><td><%= f.label :body_fat_percentage, '体脂肪率:　', {class: 'ml-4'} %></td><td><%= f.number_field :body_fat_percentage, placeholder: '%' %> %</td></tr>
                 </tbody>
               </table>
             
@@ -23,7 +21,7 @@
               </div>
             <% end %>
           </div>
-          <%= link_to "戻る", :back %>
+          <%= link_to "<<戻る", user_user_infos_path(@user) %>
       </div>
     </div>
   </div>
