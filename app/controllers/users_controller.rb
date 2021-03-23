@@ -61,14 +61,14 @@ class UsersController < ApplicationController
   def following # フォロー中ユーザー一覧表示ページへの対応メソッド
     @user = User.find(params[:id])
     @title = "#{@user.name}さんのフォロー中リスト"
-    @users = @user.following
+    @users = @user.following.order(created_at: :desc).page(params[:page]).per(15)
     render 'follow_follower_list'
   end
 
   def followers # フォロワーユーザー一覧表示ページへの対応メソッド
     @user = User.find(params[:id])
     @title = "#{@user.name}さんのフォロワーリスト"
-    @users = @user.followed
+    @users = @user.followed.order(created_at: :desc).page(params[:page]).per(15)
     render 'follow_follower_list'
   end
 
