@@ -3,17 +3,19 @@
 <div class="border-bottom m-3 bg-white rounded p-2">
   <%= form_with model: resource, local: true, method: :post do |f| %>
     <div class="field d-flex align-items-center mb-1">
-    <%= attachment_image_tag current_user, :image, fallback: 'no_image.jpg', size: '40x40', class: 'rounded-circle mr-2' %>
-    <%= f.text_area :content, class: 'tweet-text-area tweet-content-form', placeholder: '筋トレ仲間に熱い想いを届けよう！'  %>
+      <%= attachment_image_tag current_user, :image, fallback: 'no_image.jpg', size: '40x40', class: 'rounded-circle mr-2' %>
+      <%= f.text_area :content, class: 'tweet-text-area tweet-content-form', placeholder: '筋トレ仲間に熱い想いを届けよう！'  %>
     </div>
-    <div class='field d-flex align-items-center'>
-      <i class="fas fa-tags font-tags mr-1 px-1"></i>
+    <div class='field d-flex align-items-center mb-1'>
+      <i class="fas fa-tags font-tags mr-2 px-1"></i>
       <%= f.text_field :tag_list, value: resource.tag_list.join(' '), class: 'tag_form', id: "tag_area" %>
     </div>
-    <div class="field d-flex align-items-center">
-      <i class="fas fa-image font-image mr-1 px-1 pt-1"></i>
+    <div class="field d-flex align-items-center mb-1">
+      <i class="fas fa-image font-images mr-2 px-2 pt-1"></i>
       <%= f.attachment_field :image %>
-      <%= f.submit "投稿する", class: 'btn btn-success p-1 ml-auto mt-2 mb-0 mr-3 tweet-image-form' %>
+    </div>
+    <div class='text-center'>
+      <%= f.submit "投稿する", class: 'btn btn-success p-1 ml-auto mt-2 mb-0 mr-3 px-4' %>
     </div>
   <% end %>
 </div>
