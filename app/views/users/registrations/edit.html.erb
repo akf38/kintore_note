@@ -13,8 +13,8 @@
               <table class="d-flex justify-content-center mt-4">
                 <tbody>
                   <tr class='user-field'><td><%= f.label :name, 'ユーザー名:', {class: 'ml-4 mb-3'} %></td><td><%= f.text_field :name, autofocus: true, class: 'mr-3 mb-3' %></td></tr>
-                  <tr class='user-field'><td><%= f.label :email, 'メールアドレス:', {class: 'ml-4 mb-3'} %></td><td><%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'mr-3 mb-3' %></td></tr>
-                  <tr class='user-field'><td><%= f.label :profile, 'プロフィール:', {class: 'ml-4'} %></td><td><%= f.text_area :profile, autofocus: true, class: 'mr-3 mb-3' %></td></tr>
+                  <tr class='user-field'><td><%= f.label :email, 'メールアドレス:', {class: 'ml-4 mb-3'} %></td><td><%= f.email_field :email, autocomplete: "email", class: 'mr-3 mb-3' %></td></tr>
+                  <tr class='user-field'><td><%= f.label :profile, 'プロフィール:', {class: 'ml-4'} %></td><td><%= f.text_area :profile, class: 'mr-3 mb-3' %></td></tr>
                   <tr class='user-field'><td><%= f.label :start_date, '筋トレ開始日:', {class: 'ml-4'} %></td><td><%= f.date_field :start_date, class: 'mr-3 mb-3' %></td></tr>
                 </tbody>
               </table>
