@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       get :following, :followers
       post :soft_delete
     end
+    resources :trainings, only: [:show]
     resources :user_infos, only: [:index, :edit, :update, :destroy]
   end
   resources :records do

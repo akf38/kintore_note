@@ -49,7 +49,7 @@
         <tbody>
           <% @training_records.each do |t_record| %>
           <tr>
-            <td><%= t_record.training.name %></td>
+            <td><%= link_to "#{t_record.training.name}", user_training_path(@record.user.id, t_record.training_id) %></td>
             <td><%= t_record.weight %><span class='training-form-unit-part'>kg</span></td>
             <td><%= t_record.rep %><span class='training-form-unit-part'>回</span></td>
             <td><%= t_record.set %><span class='training-form-unit-part'>セット</span></td>

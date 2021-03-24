@@ -31,7 +31,12 @@
                </li>
                <li class="nav-item header-nav-item">
                  <%= link_to records_path, {class: 'nav-link btn btn-danger mr-3 border-dark'} do %>
-                   <i class="fas fa-pencil-alt text-white font-weight-bold">記録する！</i>
+                   <i class="fas fa-dumbbell text-white font-weight-bold">トレーニング記録</i>
+                 <% end %>
+               </li>
+               <li class="nav-item header-nav-item">
+                 <%= link_to user_user_infos_path(current_user.id), {class: 'nav-link btn btn-danger mr-3 border-dark'} do %>
+                   <i class="fas fa-pencil-alt text-white font-weight-bold">体型記録</i>
                  <% end %>
                </li>
                <li class="nav-item header-nav-item">
@@ -106,7 +111,7 @@
     
     <%= yield %>
     
-    <footer class= 'py-5 text-center'>
+    <footer class= 'py-2 text-center'>
       <span>@2021 筋トレノート</span>
     </footer>
   </body>

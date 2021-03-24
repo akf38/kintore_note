@@ -6,26 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.create!(name: 'aaa',
-            email: 'aaa@aaa.com',
-            tall: 175,
-            weight: 78,
-            body_fat_percentage: 15,
-            password: 'aaaaaa',
-            start_date: "2016-02-01 15:00:00",
-            password_confirmation: 'aaaaaa')
-
-30.times do |number|
-  UserInfo.create!(user_id: 1,
-                weight: rand(50..90),
-                body_fat_percentage: rand(6..35),
-                created_at: "2021-#{rand(1..2)}-#{rand(1..28)} 04:39:22")
-end
-
-Record.create!(user_id: 1,
-               start_time: "2021-2-9 04:39:22",
-               created_at: "2021-2-9 04:39:22")
-                
+# 必須ファイル
 Genre.create!(name: 'バーベル')#1
 Genre.create!(name: 'ダンベル')#2
 Genre.create!(name: 'マシン')#3
@@ -81,7 +62,59 @@ Training.create!(name: 'レッグプレス', genre_id: 3, part_id: 6)
 Training.create!(name: 'レッグエクステンション', genre_id: 3, part_id: 6)
 Training.create!(name: 'レッグカール', genre_id: 3, part_id: 6)
 
+# ここまで必須ファイル
 
-TrainingRecord.create!(record_id: 1, training_id: 1, weight: 80, rep: 7, set: 3)
-TrainingRecord.create!(record_id: 1, training_id: 2, weight: 80, rep: 7, set: 3)
-TrainingRecord.create!(record_id: 1, training_id: 3, weight: 80, rep: 7, set: 3)
+# ここから任意のテストデータ
+
+30.times do |u_number|
+  user = User.create!(name: "テスト太郎#{u_number+1}",
+              email: "test#{u_number+1}@test.com",
+              tall: rand(150..200),
+              weight: rand(60..100),
+              body_fat_percentage: rand(5..25),
+              password: 'testpass',
+              start_date: "#{rand(2000..2016)}-#{rand(1..12)}-#{rand(1..28)} 15:00:00",
+              password_confirmation: 'testpass')
+              
+  5.times do |ui_number|
+    UserInfo.create!(user_id: user.id,
+                weight: rand(50..90),
+                body_fat_percentage: rand(6..35),
+                created_at: "2021-#{rand(1..2)}-#{rand(1..28)} 04:39:22")
+  end
+  
+  5.times do |r_number|
+    month = 3
+    day = rand(1..28)
+  
+    record = Record.create!(user_id: user.id,
+              start_time: "2021-#{month}-#{day} 04:39:22",
+              created_at: "2021-#{month}-#{day} 04:39:22")
+    6.times do |tr_number|
+      TrainingRecord.create!(record_id: record.id,
+                           training_id: rand(1..30), 
+                                weight: rand(20..120), 
+                                   rep: rand(1..15), 
+                                   set: rand(1..8),
+                            created_at: record.created_at)
+    end
+  end
+  
+  5.times do |t_number|
+    Tweet.create!(user_id: user.id,
+                content: "ああ〜筋トレ行きたいなあ、私はテスト太郎#{user.id}です。",
+                created_at: "2021-#{rand(2..3)}-#{rand(1..28)} 04:39:22" )
+  end
+  
+end
+
+Tweet.all.each do |tweet|
+  user = User.find(rand(1..30))
+  TweetComment.create!(user_id: user.id,
+                        tweet_id: tweet.id,
+                        content: '僕も筋トレ行きたいなあ。今度ご一緒しませんか！',
+                        created_at: "2021-#{rand(2..3)}-#{rand(1..28)} 04:39:22" )
+end  
+
+
+

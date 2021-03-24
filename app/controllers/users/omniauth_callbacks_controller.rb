@@ -19,7 +19,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # 共通のcallbackメソッド（request.env[omniauth.auth]の中に取得したユーザー情報が入っている。）
   def callback_for(provider)
     user = User.find_by(email: request.env["omniauth.auth"].info.email)
-    if user != nil && user.provider != request.env["omniauth.auth"].provider
+    if !user.nil? && user.provider != request.env["omniauth.auth"].provider
       flash[:notice] = '他サービスにて登録済みです。'
       redirect_to new_user_session_path
       return

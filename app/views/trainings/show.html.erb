@@ -1,0 +1,31 @@
+<div class="container-fluid">
+  <div class='row'>
+    <div class='col-sm-10 offset-sm-1'>
+      <h2 class='text-center my-4'><%= "#{@training.name}記録一覧" %></h2>
+      <div class='my-4'>
+        <h2 class='text-center my-4'>使用重量推移</h2>
+        <%= line_chart @weight_data, height: "200px"%>
+      </div>
+      <table class="table">
+        <thead>
+          <th>日付</th>
+          <th>使用重量</th>
+          <th></th>
+        </thead>
+        <tbody>
+          <% @training_records.each do |t_record| %>
+          <tr>
+            <td><%= t_record.created_at.strftime('%Y/%m/%d') %></td>
+            <td><%= t_record.weight %> kg</td>
+            <td>
+              <%= link_to '記録確認', record_path(t_record.record.id), class: 'btn btn-primary mb-1' %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class='kaminari d-flex justify-content-center'>
+        <%= paginate @training_records %>
+      </div>
+    </div>
+  </div>
