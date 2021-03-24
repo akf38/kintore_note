@@ -40,18 +40,18 @@ describe '筋トレ記録のテスト', js: true do
 
     it 'ヘッダーの「記録する」ボタンを押下後、トレーニングノートページへ遷移する' do
       find('.navbar-toggler').click
-      click_on '記録する！'
+      click_on 'トレーニング記録'
       expect(current_path).to eq '/records'
     end
     it 'トレーニングノートページにて「今日のトレーニングを記録する」リンクを押下後、（新規の）今日のトレーニング詳細ページへ遷移する。' do
       find('.navbar-toggler').click
-      click_on '記録する！'
+      click_on 'トレーニング記録'
       click_link '今日のトレーニングを記録する'
       expect(current_path).to eq '/records/new'
     end
     it '（新規）今日のトレーニング詳細ページにてトレーニング記録をつける。' do
       find('.navbar-toggler').click
-      click_on '記録する！'
+      click_on 'トレーニング記録'
       click_link '今日のトレーニングを記録する'
       select "#{part1.name}", from: 'training_record_part_id'
       select "#{training1.name}", from: 'training_record_training_id'
@@ -66,7 +66,7 @@ describe '筋トレ記録のテスト', js: true do
     end
     it '（2回目）今日のトレーニング詳細ページにてトレーニング記録をつける。' do
       find('.navbar-toggler').click
-      click_on '記録する！'
+      click_on 'トレーニング記録'
       click_link '今日のトレーニングを記録する'
       select "#{part1.name}", from: 'training_record_part_id'
       select "#{training1.name}", from: 'training_record_training_id'
@@ -132,12 +132,12 @@ describe '筋トレ記録のテスト', js: true do
 
     it 'ヘッダーの「記録する」ボタンを押下後、トレーニングノートページへ遷移する' do
       find('.navbar-toggler').click
-      click_on '記録する！'
+      click_on 'トレーニング記録'
       expect(current_path).to eq '/records'
     end
     it '今日のトレーニング記録をつけた後、それを編集する' do
       find('.navbar-toggler').click
-      click_on '記録する！'
+      click_on 'トレーニング記録'
       click_link '今日のトレーニングを記録する'
       select "#{part1.name}", from: 'training_record_part_id'
       select "#{training1.name}", from: 'training_record_training_id'
@@ -151,7 +151,7 @@ describe '筋トレ記録のテスト', js: true do
       expect(page).to have_content "#{training_record1.set}"
 
       find('.navbar-toggler').click
-      click_on '記録する！'
+      click_on 'トレーニング記録'
       expect(current_path).to eq "/records"
       click_on '詳細'
       expect(current_path).to eq "/records/1"
