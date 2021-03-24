@@ -1,10 +1,10 @@
+<img src="https://user-images.githubusercontent.com/75315945/112314914-e9f12e80-8cec-11eb-958c-3b6ea72093c2.jpg" height='400px' width='800px' ><br>
 # 筋トレノート
 
 ## サイト概要
 日々、筋トレに取り組む方のためのトレーニングメモアプリです。
 トレーニングメモを残すことで過去の自分と比較でき、成長を実感することができます。
-また、ホームジム登録の機能があることで同じジムに通う筋トレ仲間を見つけることができます。
-フォローや投稿をしあって、twitterのような機能としても利用できます。
+また、フォローや投稿をしあって、筋トレ好きの方専用のtwitterのような機能も利用できます。
 
 ### サイトテーマ
 筋トレの記録管理アプリ
@@ -20,16 +20,35 @@
 - 他人と比較して、モチベーションを上げたい方
 
 ### 主な利用シーン
-筋トレをしながら、または終了後に、筋トレの記録をつける。（トレーニング内容、重量、レップ数、感想など）
+筋トレをしながら、または終了後に、筋トレの記録をつける。（トレーニング内容、重量、レップ数など）
 その後、過去の記録とグラフ等で比較することができる。
-筋トレをしていない間は、筋トレ仲間の投稿を確認し、コメント、いいねができる。
-筋トレをしてから設定日数経過すると筋トレにいけというお知らせメールが届く。
+筋トレをしていない間は、筋トレ仲間の投稿を確認し、コメント、いいねができ、モチベーションを高めることができる。
 
 ## 設計書
+https://docs.google.com/spreadsheets/d/1t7K17X6HNCsj48rDtXkXmgfKzulH1kwg3vDJ6xQfhuc/edit#gid=977420151
 
 ## 機能一覧
 https://docs.google.com/spreadsheets/d/1T2MHI2li78aAp1b7PUX8FgoAmNYtAM0lBq5I6AHS8G8/edit#gid=0
 
+## 使用方法
+
+### インストール
+$ git clone git@github.com:akf38/kintore_note.git (SSH)<br>
+or <br>
+$ git clone https://github.com/akf38/kintore_note.git (HTTPS) <br>
+$ cd kintore_note <br>
+$ bundle install<br>
+$ rails db:migrate<br>
+$ rails db:seed<br>
+$ rails s <br>
+
+### テスト
+ターミナル（もしくはコマンドプロンプト）で上記の作業を行った後、ローカルサーバーにアクセスしてご覧ください。
+
+【テスト用アカウント：ログイン】 <br>
+メールアドレス：test1@test.com<br>
+パスワード：testpass<br>
+（登録画面にて新規登録も可能です。）
 ## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
@@ -37,5 +56,31 @@ https://docs.google.com/spreadsheets/d/1T2MHI2li78aAp1b7PUX8FgoAmNYtAM0lBq5I6AHS
 - JSライブラリ：jQuery
 - IDE：Cloud9
 
-## 使用素材
-使用時に追記予定。
+## Gem
+・devise 
+・refile
+・refile
+・refile-mini_magick
+・jquery-rails
+・font-awesome-sass
+・bootstrap
+・dotenv-rails
+・kaminari
+・chartkick
+・groupdate
+・simple_calendar
+・acts-as-taggable-on
+・jquery-ui-rails
+・omniauth-facebook
+・omniauth-twitter
+・omniauth-google-oauth2
+・omniauth
+・bullet
+・devise-i18n
+・devise-i18n-views
+・rails-i18n
+・faker
+・factory_bot_rails
+
+## 作成者
+[akf38](https://github.com/akf38)

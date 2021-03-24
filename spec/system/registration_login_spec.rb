@@ -42,9 +42,13 @@ describe '新規登録、ログイン、ログアウトのテスト' do
         find('.navbar-toggler').click
         expect(page).to have_link 'マイページ'
       end
-      it '「記録する」と表示される' do
+      it '「トレーニング記録」と表示される' do
         find('.navbar-toggler').click
-        expect(page).to have_link '記録する'
+        expect(page).to have_link 'トレーニング記録'
+      end
+      it '「体型記録」と表示される' do
+        find('.navbar-toggler').click
+        expect(page).to have_link '体型記録'
       end
       it '「つぶやく」と表示される' do
         find('.navbar-toggler').click
@@ -95,9 +99,13 @@ describe '新規登録、ログイン、ログアウトのテスト' do
           find('.navbar-toggler').click
           expect(page).to have_link 'マイページ'
         end
-        it '「記録する」と表示される' do
+        it '「トレーニング記録」と表示される' do
           find('.navbar-toggler').click
-          expect(page).to have_link '記録する'
+          expect(page).to have_link 'トレーニング記録'
+        end
+        it '「体型記録」と表示される' do
+          find('.navbar-toggler').click
+          expect(page).to have_link '体型記録'
         end
         it '「つぶやく」と表示される' do
           find('.navbar-toggler').click
