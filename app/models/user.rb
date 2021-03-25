@@ -46,7 +46,7 @@ class User < ApplicationRecord
     less_than: 100,
     allow_blank: true,
   }
-  validates :profile, length: { maximum: 300 }
+  validates :profile, length: { maximum: 150 }
 
   # フォローする
   def follow(other_user)
