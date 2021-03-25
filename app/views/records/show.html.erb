@@ -1,39 +1,49 @@
 <div class="container-fluid">
+  <% if current_user == @record.user %>
+  <div class='justify-content-start mt-3'>
+    <%= link_to '<<トレーニング一覧へ戻る', records_path %>
+  </div>
+  <% end %>
   <div class='row'>
     <div class=' col-lg-10 offset-lg-1 mt-3'>
+    <% if current_user != @record.user  %>
+      <h2 class='text-center my-4'><%= "#{@record.user.name} さん"%></h2>
+    <% end %>
     <h2 class='text-center my-4'><span class='training-note-title-part'><%= @record.created_at.strftime('%Y/%m/%d') %></span><span class='training-note-title-part'>トレーニング詳細</span></h2>
     <% if @record.user == current_user %>
       <%= link_to 'トレーニング内容の編集はこちら', edit_record_path(@record), data: {"turbolinks" => false} %>
     <% end %>
     <%= render 'layouts/errors', obj: @training_record %>
-    <%= form_with model: [@record,@training_record], local: true do |f| %>
-      <div class='mt-3'>
-        <div class='mb-2'>
-          <% category_options = Part.order(:id).map{|c| [c.name, c.id, data: { children_path: part_trainings_path(c)}] } %>
-          <%= f.select :part_id, category_options, {include_blank: 'ーー部位を選択ーー' }, class: 'select-parent' %>
+    <% if current_user == @record.user %>
+      <%= form_with model: [@record,@training_record], local: true do |f| %>
+        <div class='mt-3'>
+          <div class='mb-2'>
+            <% category_options = Part.order(:id).map{|c| [c.name, c.id, data: { children_path: part_trainings_path(c)}] } %>
+            <%= f.select :part_id, category_options, {include_blank: 'ーー部位を選択ーー' }, class: 'select-parent' %>
+          </div>
+          <div class='mb-3'>
+            <% sub_categories = Part.try(:trainings) || [] %>
+            <% sub_category_options = sub_categories.map{ |c| [c.name, c.id] } %>
+            <%= f.select :training_id, sub_category_options, { include_blank: 'ーー部位別トレーニング一覧ーー' }, class: 'select-children' %>
+          </div>
         </div>
-        <div class='mb-3'>
-          <% sub_categories = Part.try(:trainings) || [] %>
-          <% sub_category_options = sub_categories.map{ |c| [c.name, c.id] } %>
-          <%= f.select :training_id, sub_category_options, { include_blank: 'ーー部位別トレーニング一覧ーー' }, class: 'select-children' %>
+        <div class='d-flex mb-4 align-items-center'>
+          <div>
+            <%= f.number_field :weight, class: 'training_number_form' %><span class='training-form-unit-part'>kg</span>
+          </div>
+          
+          <div>
+            <%= f.number_field :rep, class: 'ml-2 training_number_form' %><span class='training-form-unit-part'>回</span>
+          </div>
+          
+          <div>
+            <%= f.number_field :set, class: 'ml-2 training_number_form' %><span class='training-form-unit-part'>セット</span>
+          </div>
+          <div>
+            <%= f.submit '記録する', class: 'btn btn-primary ml-1' %>
+          </div>
         </div>
-      </div>
-      <div class='d-flex mb-4 align-items-center'>
-        <div>
-          <%= f.number_field :weight, class: 'training_number_form' %><span class='training-form-unit-part'>kg</span>
-        </div>
-        
-        <div>
-          <%= f.number_field :rep, class: 'ml-2 training_number_form' %><span class='training-form-unit-part'>回</span>
-        </div>
-        
-        <div>
-          <%= f.number_field :set, class: 'ml-2 training_number_form' %><span class='training-form-unit-part'>セット</span>
-        </div>
-        <div>
-          <%= f.submit '記録する', class: 'btn btn-primary ml-1' %>
-        </div>
-      </div>
+      <% end %>
     <% end %>
     </div>
   </div>
