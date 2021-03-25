@@ -4,19 +4,24 @@
       <%= render 'layouts/user_sidebar', obj: current_user %>
     </div>
     <div class="col-lg-6 offset-lg-1">
-      <h2 class='text-center'>ユーザー一覧</h2>
+      <h2 class='text-center px-0'>ユーザー一覧</h2>
       <table class="table">
         <thead>
           <th></th>
-          <th>ユーザー名</th>
-          <th></th>
+          <th class='px-1 pt-3 text-center'><span style='display: inline-block;'>ユーザー名</span></th>
+          <th class='px-1 pt-3 text-center'><span style='display: inline-block;'>プロフィール</span></th>
         </thead>
         <tbody>
           <% @users.each do |user| %>
           <tr>
-            <td><%= attachment_image_tag user, :image, fallback: 'no_image.jpg', size: '40x40', class: 'mb-3 rounded-circle' %></td>
-            <td><%= link_to "#{user.name}", user_path(user) %></td>
-            <td id= "<%= user.id %>-follow-button"><%= render 'follow_button', obj: user %></td>
+            <td style='width: 10%;' class='px-0'><%= attachment_image_tag user, :image, fallback: 'no_image.jpg', size: '40x40', class: 'rounded-circle' %></td>
+            <td style='width: 35%;' class='px-1 pt-3 text-center'><%= link_to "#{user.name}", user_path(user) %></td>
+            <td style='width: 55%' class='px-1 pt-3 text-center'><%= user.profile %></td>
+          </tr>
+          <tr>
+            <td style='width: 10%; border: none;' class='px-1 pt-3 text-center'></td>
+            <td style='width: 35%; border: none;' class='px-1 pt-3 text-center'></td>
+            <td style='width: 55%; border: none;' class='pt-3 text-right' id= "<%= user.id %>-follow-button"><%= render 'follow_button', obj: user %></td>
           </tr>
           <% end %>
         </tbody>
