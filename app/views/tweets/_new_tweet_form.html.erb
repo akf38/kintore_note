@@ -10,7 +10,10 @@
       <i class="fas fa-tags font-tags mr-2 px-1"></i>
       <%= f.text_field :tag_list, value: resource.tag_list.join(' '), class: 'tag_form', id: "tag_area" %>
     </div>
-    
+    <div class="field d-flex align-items-center mb-1" style='overflow-x: hidden;'>
+      <i class="fas fa-image font-images mr-2 px-2 pt-1"></i>
+      <%= f.attachment_field :image %>
+    </div>
     <div class='text-center'>
       <%= f.submit "投稿する", class: 'btn btn-success p-1 ml-auto mt-2 mb-0 mr-3 px-4' %>
     </div>
