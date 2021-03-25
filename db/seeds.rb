@@ -73,6 +73,7 @@ Training.create!(name: 'レッグカール', genre_id: 3, part_id: 6)
               weight: rand(60..100),
               body_fat_percentage: rand(5..25),
               password: 'testpass',
+              profile: "モットーは、銃よりも剣よりも筋肉こそが強し! テスト太郎#{u_number+1}です。一緒にトレーニングしましょう！よろしくお願いします！！！",
               start_date: "#{rand(2000..2016)}-#{rand(1..12)}-#{rand(1..28)} 15:00:00",
               password_confirmation: 'testpass')
               
