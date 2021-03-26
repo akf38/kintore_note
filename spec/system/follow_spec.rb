@@ -25,10 +25,11 @@ describe 'フォロー機能のテスト', js: true do
       find('.navbar-toggler').click
       find(".nakama").click
       expect(current_path).to eq '/users'
-      using_wait_time 10 do
-        expect { find(".follow-follower-button-2").click }.to change(Relationship, :count).by(1)
-      end
-      expect(current_path).to eq '/users'
+      expect do # ajax使用部分でajax処理完了まで待ってから、Relationshipデータ数の変更を確認している。間に2個ほどテストを挟む。
+        find(".follow-follower-button-2").click
+        expect(current_path).to eq '/users'
+        expect(page).to have_css '.follow-follower-button-2'
+      end.to change(Relationship, :count).by(1)
     end
     it '特定のユーザーのフォローボタンを押下すると、特定ユーザーのボタンが「フォローする!」から「フォローを外す」に変更される' do
       find('.navbar-toggler').click
@@ -39,8 +40,7 @@ describe 'フォロー機能のテスト', js: true do
         expect { find(".follow-follower-button-3").click }.to change(Relationship, :count).by(1)
       end
       find(".follow-follower-button-3").click
-      expect(current_path).to eq '/users'
-      using_wait_time 5 do
+       wait_for_ajax do
         expect(find('.follow-follower-button-3').value).to eq 'フォローを外す'
       end
     end
