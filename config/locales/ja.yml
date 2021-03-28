@@ -30,6 +30,11 @@ ja:
         name: 名前
         email: "メールアドレス"
         password: "パスワード"
+        weight: "体重"
+        tall: "身長"
+        body_fat_percentage: '体脂肪率'
+        image: '画像'
+        start_date: '筋トレ開始日'
         password_confirmation: "確認用パスワード"
         remember_me: "次回から自動的にログイン"
     models:
