@@ -56,6 +56,10 @@ i{
   mix-blend-mode: multiply;
 }
 
+.image-field{
+  width: 100%;
+}
+
 // レスポンシブ対応
 @media screen and (max-width:992px) {
   .header-nav-item {
