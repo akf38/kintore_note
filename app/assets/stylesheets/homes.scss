@@ -7,7 +7,7 @@
   background-size: cover;
   background-position: center;
   width: 100%;
-  height: 400px;
+  height: 500px;
   p{
     font-size: 50px;
     font-weight: bold;
@@ -18,9 +18,34 @@
 
 .main{
   width: 100%;
-  height: 400px;
+  height: 500px;
   background: rgba(0, 0, 0, 0.4);
 }
+
+.nayami-box{
+  width: 30%;
+}
+.nayami-illust{
+  margin: 0 auto;
+  width: 200px;
+  height: 200px;
+}
+
+.nayami-sentence{
+  font-size: 20px;
+}
+#nayami-illust1{
+  background-image: image-url('forget.png');
+}
+
+#nayami-illust2{
+  background-image: image-url('worry.png');
+}
+
+#nayami-illust3{
+  background-image: image-url('refrain.png');
+}
+
 
 .first-visual{
   background-image: image-url('memo.jpg');
@@ -33,11 +58,6 @@
     font-weight: bold;
     color: black;
     text-shadow: 1px 2px 3px #ffffff;
-    span{
-      font-size: 40px;
-      font-weight: bold;
-      color: red;
-    }
   }
 }
 
@@ -69,6 +89,12 @@
   }
 }
 
+.home-visual{
+  position: relative;
+  z-index: 0;
+}
+
+
 // レスポンシブ対応
 
 @media screen and (max-width:992px) {
@@ -87,18 +113,13 @@
     width: 100%;
     height: 150px;
   }
-  .first-visual{
-    p{
-      font-size: 20px;
-      span{
-        font-size: 25px;
-      }
-    }
-  }
   .third-visual-text{
     display: inline-block;
   }
-}
+  
+  }
+  
+  
 
 @media screen and (max-width:576px) {
   .main-visual {
@@ -121,11 +142,16 @@
     width: 100%;
     height: 150px;
     p{
-      font-size: 20px;
+      font-size: 18px;
     }
     .first-visual-text-part{
       display: inline-block;
     }
   }
   
+  
+  .nayami-box{
+    width: 90%;
+    margin: 0 auto;
+  }
 }
