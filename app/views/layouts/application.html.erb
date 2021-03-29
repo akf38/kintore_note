@@ -91,6 +91,8 @@
       </div>
     </header>
     
+    <div style='height: 70px'></div>
+    
     <% flash.each do |key, value| %>  <!-- flashの表示　-->
       <% if key == 'alert' || key == 'notice' || key == 'error' %> <!-- deviseのflashメッセージへ対応 -->
         <div class="alert alert-<%= devise_flashkey_to_bootstrap(key) %> m-0">
@@ -110,6 +112,10 @@
     <% end %>
     
     <%= yield %>
+    
+    <div id='top-up-btn'>
+      <i class="fas fa-4x fa-arrow-circle-up"></i>
+    </div>
     
     <footer class= 'py-2 text-center'>
       <span>@2021 筋トレノート</span>
