@@ -35,7 +35,7 @@
                  <% end %>
                </li>
                <li class="nav-item header-nav-item">
-                 <%= link_to user_user_infos_path(current_user.id), {class: 'nav-link btn btn-danger mr-3 border-dark'} do %>
+                 <%= link_to user_user_infos_path(current_user.id), {class: 'nav-link btn btn-danger mr-3 border-dark', data: {"turbolinks" => false}} do %>
                    <i class="fas fa-pencil-alt text-white font-weight-bold">体型記録</i>
                  <% end %>
                </li>
