@@ -36,11 +36,11 @@ describe 'フォロー機能のテスト', js: true do
       find(".nakama").click
       expect(current_path).to eq '/users'
       expect(find('.follow-follower-button-3').value).to eq 'フォローする！'
-      using_wait_time 5 do
+      using_wait_time 10 do
         expect { find(".follow-follower-button-3").click }.to change(Relationship, :count).by(1)
       end
       find(".follow-follower-button-3").click
-       wait_for_ajax do
+      using_wait_time 10 do
         expect(find('.follow-follower-button-3').value).to eq 'フォローを外す'
       end
     end
@@ -77,15 +77,15 @@ describe 'フォロー機能のテスト', js: true do
       click_on "#{user4.name}"
       expect(current_path).to eq '/users/4'
       expect(find('.follow-follower-button-4').value).to eq 'フォローする！'
-      using_wait_time 5 do
+      using_wait_time 10 do
         expect { find(".follow-follower-button-4").click }.to change(Relationship, :count).by(1)
       end
       find(".follow-follower-button-4").click
-      using_wait_time 5 do
+      using_wait_time 10 do
         expect { find(".follow-follower-button-4").click }.to change(Relationship, :count).by(1)
       end
       find(".follow-follower-button-4").click
-      using_wait_time 5 do
+      using_wait_time 10 do
         expect(find('.follow-follower-button-4').value).to eq 'フォローを外す'
       end
       expect(current_path).to eq '/users/4'
