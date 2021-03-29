@@ -30,6 +30,14 @@
   box-sizing: border-box;
 }
 
+header{
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
 i{
   font-weight: bold;
 }
@@ -58,6 +66,18 @@ i{
 
 .image-field{
   width: 100%;
+}
+
+#top-up-btn{
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  color: rgba(255,0,0,0.5);
+}
+
+#top-up-btn:hover{
+  color: rgb(255,0,0);
+  cursor: pointer;
 }
 
 // レスポンシブ対応

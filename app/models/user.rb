@@ -47,10 +47,9 @@ class User < ApplicationRecord
     allow_blank: true,
   }
   validates :profile, length: { maximum: 150 }
-  
+
   # 筋トレ開始日のバリデーション（未来の日付入力を不可とする。）(user.rb内参照)
   validate :start_date_should_be_set_in_the_past
-  
 
   # フォローする
   def follow(other_user)
@@ -91,10 +90,9 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0, 20]
     end
   end
-  
-  # 筋トレ開始日のバリデーション（未来の日付入力を不可とする。）
+
+  # 筋トレ開始日のバリデーション（未来の日付入力を不可とする。）(&.でnilに対してでも通すようにする。)
   def start_date_should_be_set_in_the_past
-     errors.add(:start_date, "は、本日より以前の日程を指定してください。") if self.start_date > DateTime.now
+    errors.add(:start_date, "は、本日より以前の日程を指定してください。") if start_date&.> DateTime.now
   end
-  
 end

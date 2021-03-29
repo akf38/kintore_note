@@ -10,23 +10,64 @@
       <h1 class='font-weight-bold text-body home-top-content-text'><span class='home-top-content-text-part'> 筋トレ愛者のみなさん! </span><span class='home-top-content-text-part'> こんなお悩みありませんか？ </span></h1>
     </div>
   </div>
+  
+  <div class='container d-sm-flex justify-content-around'>
+    <div class='nayami-box mb-5'>
+      <div class='nayami-illust'>
+        <%= image_tag 'forget.png', class: 'nayami-illust' %>
+      </div>
+      <div class='nayami-sentence font-weight-bold'>
+        前回の筋トレ時のウェイト、レップ数、セット数いくらだったっけ？<br>
+        過去のトレーニング内容を思い出したい！
+      </div>
+    </div>
+    <div class='nayami-box mb-5'>
+      <div class='nayami-illust'>
+        <%= image_tag 'worry.png', class: 'nayami-illust' %>
+      </div>
+      <div class='nayami-sentence font-weight-bold'>
+        日々筋トレに取り組んでいるけど、最近成長していない気がする。<br>
+        目に見えて成果がわかると、辛い時も頑張れるのになあ。。
+      </div>
+    </div>
+    <div class='nayami-box mb-5'>
+      <div class='nayami-illust'>
+        <%= image_tag 'refrain.png', class: 'nayami-illust' %>
+      </div>
+      <div class='nayami-sentence font-weight-bold'>
+        鍛え上げた身体をみんなに自慢したい！
+        だけど、普通のSNSで筋肉自慢はどう思われるかな。。
+      </div>
+    </div>
+  </div>
+  
+  <div class='container'>
+    <div class="d-flex justify-content-center mb-3">
+      <h1 class='font-weight-bold text-body home-top-content-text'><span class='home-top-content-text-part'> そのお悩み！ </span><span class='home-top-content-text-part'> 筋トレノートで解決します！</span></h1>
+    </div>
+  </div>
+  
   <div class='container'>
     <div class="d-flex align-items-center first-visual mb-3 home-visual">
-      <p class='ml-3'>前回のウェイト、レップ数<br>意外と忘れていませんか？<br>
-      <span><span class='first-visual-text-part'>トレーニング内容を記録し、</span><span class='first-visual-text-part'>効率的で無駄のない成長へ</span></span>
+      <p class='home-visual-sentence' style='color: red;'>
+      <span class='first-visual-text-part'>トレーニング内容を記録できるから、</span><br>
+      <span class='first-visual-text-part'>効率的で無駄のない成長に繋がる！</span>
       </p>
     </div>
   </div>
+  
   <div class='container'>
     <div class="d-flex justify-content-center align-items-center second-visual mb-3 home-visual">
-      <p>自分自身の成長をグラフで可視化</p>
+      <p style='color: red;' class='home-visual-sentence'>体型記録、使用重量の推移グラフで可視化。<br>過去の記録が将来のあなたをサポート！</p>
     </div>
   </div>
+  
   <div class='container'>
     <div class="d-flex justify-content-center align-items-center third-visual mb-3 home-visual">
-     <p class='ml-2'><span class='third-visual-text'>筋トレ専門のSNS付きだから、</span><span class='third-visual-text'>筋肉アピールも遠慮なし！</span></p>
+     <p class='home-visual-sentence' style='color: red;'><span class='third-visual-text'>筋トレ専門のSNS付きだから、</span><span class='third-visual-text'>筋肉アピールも遠慮なし！</span></p>
     </div>
   </div>
+  
   <div class='container'>
     <div class="d-flex justify-content-center align-items-center home-visual py-4">
       <%= link_to '筋トレノートをはじめる！',  new_user_registration_path, {class: 'btn btn-success p-3'} %>

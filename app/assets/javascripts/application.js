@@ -23,3 +23,28 @@
 //= require Chart.bundle
 //= require_tree .
 
+
+jQuery(document).on('turbolinks:load', function(){
+  
+  var topBtn = $('#top-up-btn');
+  
+  topBtn.hide();
+  
+  $(window).scroll(function(){
+    if ($(this).scrollTop() > 100) {
+      topBtn.fadeIn();
+    } else {
+      topBtn.fadeOut();
+    }
+  });
+  
+  
+  topBtn.click(function(){
+  $('html,body').animate({
+    'scrollTop': 0
+  }, 300 );
+  });
+  
+  
+});
+  
