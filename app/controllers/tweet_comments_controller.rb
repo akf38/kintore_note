@@ -5,6 +5,8 @@ class TweetCommentsController < ApplicationController
     @tweet = Tweet.find(params[:tweet_id])
     @tweet_comment = TweetComment.new(tweet_comment_params)
     if @tweet_comment.save
+      # コメントの通知作成
+      @tweet.create_notification_comment!(current_user, @tweet_comment.id)
       @tweet_comment = TweetComment.new(user_id: current_user.id, tweet_id: @tweet.id)
     end
     @tweet_comments = TweetComment.includes([:user]).where(tweet_id: @tweet.id)

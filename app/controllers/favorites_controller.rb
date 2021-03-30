@@ -4,6 +4,7 @@ class FavoritesController < ApplicationController
   def create
     @tweet = Tweet.find(params[:tweet_id])
     @favorite = current_user.favorites.create(tweet_id: params[:tweet_id])
+    @tweet.create_notification_by(current_user) # 通知の作成
     respond_to do |format|
       format.html { redirect_back(fallback_location: root_path) }
       format.js

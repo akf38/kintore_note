@@ -17,6 +17,17 @@
              <%= image_tag 'logo.jpg' %>
            </a>
            
+           <% if user_signed_in? %>
+             <div>
+               <% if unchecked_notifications.any? %>
+                <i class="fa fa-circle" style="color: red;"></i>
+               <% end %>
+               <%= link_to notifications_path do %>
+                 <i class="far fa-bell fa-2x text-dark"></i>
+               <% end %>
+             </div>
+           <% end %>
+           
            <button class='navbar-toggler border-dark' type='button' data-toggle='collapse' data-target='#navbarNavDropdown' aria-controls='navbarNavDropdown' aria-expanded='false' aria-label='Toggle navigation'>
              <span class='navbar-toggler-icon'></span>
            </button>
