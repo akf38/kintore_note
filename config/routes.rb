@@ -28,4 +28,9 @@ Rails.application.routes.draw do
   resources :parts, only: [] do
     resources :trainings, only: [:index]
   end
+  resources :notifications, only: :index do
+    collection do
+      delete :destroy_all
+    end
+ end
 end
