@@ -105,6 +105,7 @@ class User < ApplicationRecord
     errors.add(:start_date, "は、本日より以前の日程を指定してください。") if start_date&.> DateTime.now
   end
   
+  # フォロー通知作成
   def create_notification_follow!(current_user)
     temp = Notification.where(["visiter_id = ? and visited_id = ? and action = ?", current_user.id, id, 'follow'])
     if temp.blank?
@@ -113,4 +114,12 @@ class User < ApplicationRecord
     end
   end
   
+  # ゲストユーザー作成
+  def self.guest
+    find_or_create_by!(email: 'guest_test@test.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.password_confirmation = user.password
+      user.name = '筋肉ゲスト太郎'
+    end
+  end
 end

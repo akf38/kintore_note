@@ -18,7 +18,14 @@ class Users::SessionsController < Devise::SessionsController
   # def destroy
   #   super
   # end
-
+  
+  def guest_sign_in
+    user = User.guest
+    sign_in user
+    flash[:notice] = 'ゲストユーザーとしてログインしました。'
+    redirect_to root_path
+  end
+  
   protected
 
   # 論理削除済みユーザーのログインを阻止するメソッド
