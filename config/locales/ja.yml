@@ -25,6 +25,13 @@ ja:
               invalid: "は有効でありません。"
               confirmation: "が内容とあっていません。"
     attributes:
+      training_record:
+        training_id: 'トレーニング部位,種目'
+        training: 'トレーニング部位,種目'
+        part: 'トレーニング部位'
+        weight: '重量'
+        rep: 'レップ数'
+        set: 'セット数'
       user:
         current_password: "現在のパスワード"
         name: 名前
@@ -38,7 +45,7 @@ ja:
         password_confirmation: "確認用パスワード"
         remember_me: "次回から自動的にログイン"
     models:
-      user: "ユーザ"
+      user: "ユーザー"
   devise:
     confirmations:
       new:
