@@ -26,6 +26,15 @@ class User < ApplicationRecord
 
   has_many :followed, through: :passive_relationships,
                       source: :follower
+                      
+  has_many :active_notifications, class_name: "Notification",
+                                  foreign_key: "visiter_id",
+                                  dependent: :destroy
+                                  
+  has_many :passive_notifications, class_name: "Notification",
+                                   foreign_key: "visited_id",
+                                   dependent: :destroy
+                                     
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
 
@@ -94,5 +103,23 @@ class User < ApplicationRecord
   # 筋トレ開始日のバリデーション（未来の日付入力を不可とする。）(&.でnilに対してでも通すようにする。)
   def start_date_should_be_set_in_the_past
     errors.add(:start_date, "は、本日より以前の日程を指定してください。") if start_date&.> DateTime.now
+  end
+  
+  # フォロー通知作成
+  def create_notification_follow!(current_user)
+    temp = Notification.where(["visiter_id = ? and visited_id = ? and action = ?", current_user.id, id, 'follow'])
+    if temp.blank?
+      notification = current_user.active_notifications.new(visited_id: id, action: 'follow')
+      notification.save if notification.valid?
+    end
+  end
+  
+  # ゲストユーザー作成
+  def self.guest
+    find_or_create_by!(email: 'guest_test@test.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.password_confirmation = user.password
+      user.name = '筋肉ゲスト太郎'
+    end
   end
 end

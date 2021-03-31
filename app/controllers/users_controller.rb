@@ -14,12 +14,15 @@ class UsersController < ApplicationController
     @weight_data = weight_data.map { |d| [d.created_at.strftime('%Y%m%d').to_s, d.weight] }
     bfp_data = data.select(:created_at, :body_fat_percentage)
     @bfp_data = bfp_data.map { |d| [d.created_at.strftime('%Y%m%d').to_s, d.body_fat_percentage] }
-
-    if @user == current_user
+    if @user == current_user # マイページ
       # 自分+フォロー中ユーザーの投稿一覧
       tweets = Tweet.get_self_and_following_tweets(current_user)
       @tweets = tweets.order(created_at: :desc).page(params[:page]).per(15)
-    else
+      # 未確認の通知があれば、flashでお知らせする
+      if current_user.passive_notifications.where(checked: false).any?
+        flash.now[:notification] = '新着通知'
+      end
+    else # 他人のページ
       # userの投稿一覧
       tweets = Tweet.includes([:user]).where(user_id: @user.id)
       @tweets = tweets.order(created_at: :desc).page(params[:page]).per(15)
