@@ -23,7 +23,7 @@ class Users::SessionsController < Devise::SessionsController
     user = User.guest
     sign_in user
     flash[:notice] = 'ゲストユーザーとしてログインしました。'
-    redirect_to root_path
+    redirect_to user_path(user)
   end
   
   protected
