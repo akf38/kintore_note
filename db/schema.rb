@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_01_040829) do
+ActiveRecord::Schema.define(version: 2021_04_01_065435) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -91,9 +91,9 @@ ActiveRecord::Schema.define(version: 2021_04_01_040829) do
   create_table "training_records", force: :cascade do |t|
     t.integer "record_id", null: false
     t.integer "training_id", null: false
-    t.integer "weight", null: false
-    t.integer "rep", null: false
-    t.integer "set", null: false
+    t.float "weight", null: false
+    t.float "rep", null: false
+    t.float "set", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -127,8 +127,8 @@ ActiveRecord::Schema.define(version: 2021_04_01_040829) do
 
   create_table "user_infos", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "weight", null: false
-    t.integer "body_fat_percentage", null: false
+    t.float "weight", null: false
+    t.float "body_fat_percentage", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -142,9 +142,9 @@ ActiveRecord::Schema.define(version: 2021_04_01_040829) do
     t.string "image_id"
     t.string "name", null: false
     t.text "profile"
-    t.integer "tall"
-    t.integer "weight"
-    t.integer "body_fat_percentage"
+    t.float "tall"
+    t.float "weight"
+    t.float "body_fat_percentage"
     t.boolean "is_deleted", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
