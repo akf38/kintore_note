@@ -23,6 +23,14 @@ class TweetsController < ApplicationController
     @tweet = Tweet.new(tweet_params)
     @tweet.user_id = current_user.id
     if @tweet.save
+      
+       # Vision AI にて自動取得したタグを追加する。
+      tags = Vision.get_image_data(@tweet.image)
+      tags.each do |tag|
+        @tweet.tag_list.push (tag)
+      end
+      @tweet.save
+      
       tweets = Tweet.get_self_and_following_tweets(current_user)
       @tweets = tweets.order(created_at: :desc).page(params[:page]).per(15)
       redirect_to tweets_path
