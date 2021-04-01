@@ -1,9 +1,9 @@
 <div class="container-fluid mt-3">
   <div class="row">
-    <div class="col-lg-3 offset-lg-1 user-info user-info-tweet">
+    <div class="col-lg-4 offset-lg-1 user-info mb-5 mt-3">
       <%= render 'layouts/user_sidebar', obj: current_user %>
     </div>
-    <div class="col-lg-6 offset-lg-1">
+    <div class="col-lg-6">
       <h2 class='text-center'>ツイート詳細</h2>
       <div class="tweet border-bottom">
         <%= link_to user_path(@tweet.user) do %>

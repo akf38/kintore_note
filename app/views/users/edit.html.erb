@@ -10,9 +10,9 @@
               
               <table class="d-flex justify-content-center mt-4">
                 <tbody>
-                  <tr class='user-field'><td><%= f.label :tall, '身長:', {class: 'ml-4'} %></td><td><%= f.number_field :tall, autofocus: true, placeholder: 'cm' %> cm</td></tr>
-                  <tr class='user-field'><td><%= f.label :weight, '体重:', {class: 'ml-4 mb-3'} %></td><td><%= f.number_field :weight, placeholder: 'kg' %> kg</td></tr>
-                  <tr class='user-field'><td><%= f.label :body_fat_percentage, '体脂肪率:　', {class: 'ml-4'} %></td><td><%= f.number_field :body_fat_percentage, placeholder: '%' %> %</td></tr>
+                  <tr class='user-field'><td><%= f.label :tall, '身長:', {class: 'ml-4'} %></td><td><%= f.number_field :tall, autofocus: true, placeholder: 'cm', step: '0.1' %> cm</td></tr>
+                  <tr class='user-field'><td><%= f.label :weight, '体重:', {class: 'ml-4 mb-3'} %></td><td><%= f.number_field :weight, placeholder: 'kg', step: '0.1' %> kg</td></tr>
+                  <tr class='user-field'><td><%= f.label :body_fat_percentage, '体脂肪率:　', {class: 'ml-4'} %></td><td><%= f.number_field :body_fat_percentage, placeholder: '%', step: '0.1' %> %</td></tr>
                 </tbody>
               </table>
             
