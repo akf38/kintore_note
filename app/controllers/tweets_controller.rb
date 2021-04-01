@@ -22,6 +22,10 @@ class TweetsController < ApplicationController
   def create
     @tweet = Tweet.new(tweet_params)
     @tweet.user_id = current_user.id
+    
+    # Natural Language API にて投稿のポジティブネガティブ数を判定
+    @tweet.score = Language.get_data(tweet_params[:content])
+    
     if @tweet.save
       
        # Vision AI にて自動取得したタグを追加する。
