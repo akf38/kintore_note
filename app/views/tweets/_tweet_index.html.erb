@@ -29,7 +29,18 @@
           <%= attachment_image_tag tweet, :image, size: '100x100' %>
         </div>
       </div>
-      <div class='tweet-info d-flex'>
+      <div class='tweet-info d-flex mt-3'>
+        <% if tweet.score %>
+          <% if tweet.score >= 0.5  %>
+            <div class='tweet-positive-parameter ml-2' style='color: red;'> 感情指数 <i class="far fa-grin-squint"></i> <%= tweet.score %></div>
+          <% elsif tweet.score > 0 %>
+            <div class='tweet-positive-parameter ml-2' style='color: green;'> 感情指数 <i class="far fa-grin-alt"></i> <%= tweet.score %></div>
+          <% elsif  -0.5 < tweet.score %>
+            <div class='tweet-positive-parameter ml-2' style='color: green;'> 感情指数 <i class="far fa-meh"></i> <%= tweet.score %></div>
+          <% else %>
+            <div class='tweet-positive-parameter ml-2' style='color: blue;'> 感情指数 <i class="far fa-tired"></i> <%= tweet.score %></div>
+          <% end %>
+        <% end %>
         <div id="favorite-btn-<%= tweet.id %>" class='ml-auto mr-1'><%= render 'favorites/favorite_btn', obj: tweet %></div>
         <div class='tweet-comment mx-1'><%= link_to "コメント#{tweet.tweet_comments.count}", tweet_path(tweet.id), {id: "tweet-#{tweet.id}-show-link"} %></div>
         <% if tweet.user == current_user %>

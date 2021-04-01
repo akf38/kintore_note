@@ -29,15 +29,15 @@
         </div>
         <div class='d-flex mb-4 align-items-center'>
           <div>
-            <%= f.number_field :weight, class: 'training_number_form' %><span class='training-form-unit-part'>kg</span>
+            <%= f.number_field :weight, class: 'training_number_form', step: '0.1' %><span class='training-form-unit-part'>kg</span>
           </div>
           
           <div>
-            <%= f.number_field :rep, class: 'ml-2 training_number_form' %><span class='training-form-unit-part'>回</span>
+            <%= f.number_field :rep, class: 'ml-2 training_number_form', step: '0.1' %><span class='training-form-unit-part'>回</span>
           </div>
           
           <div>
-            <%= f.number_field :set, class: 'ml-2 training_number_form' %><span class='training-form-unit-part'>セット</span>
+            <%= f.number_field :set, class: 'ml-2 training_number_form', step: '0.1' %><span class='training-form-unit-part'>セット</span>
           </div>
           <div>
             <%= f.submit '記録する', class: 'btn btn-primary ml-1' %>
