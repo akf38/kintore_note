@@ -12,6 +12,8 @@ module ApplicationHelper
           diff_day = 30 - d1.day + d2.day
         when 2
           diff_day = 29 - d1.day + d2.day
+        else
+          diff_day = 31 - d1.day + d2.day
         end
       else
         case d1.month
@@ -19,6 +21,8 @@ module ApplicationHelper
           diff_day = 30 - d1.day + d2.day
         when 2
           diff_day = 28 - d1.day + d2.day
+        else
+          diff_day = 31 - d1.day + d2.day
         end
       end
     else
@@ -28,7 +32,6 @@ module ApplicationHelper
 
     diff_year = diff_month / 12
     diff_month = diff_month % 12
-
     "#{diff_year}年#{diff_month}ヶ月#{diff_day}日"
   end
 
